@@ -33,8 +33,44 @@ send.addEventListener('click',function(){
     userInput.value = ''
 
     // stimulate backend (delay caused by backend)
-    setTimeout(function(){
-        appendMessage("Brain not biult by backend",'bot-message');
-    },1000);
+        // setTimeout(function(){
+        //     appendMessage("Brain not biult by backend",'bot-message');
+        // },1000);
+    
+    // Actual connection directly from API function(Not stimulated).
+
+    botReply(message);
 });
 
+// THE API PART
+
+async function botReply(userText){
+    // Place holder URL since backend is not completed
+    const url = "https: url?";
+    try{
+        // shoot data across internet
+        const response = await fetch(url,{
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            // Turning text into for,at the server can read
+            body:JSON.stringify({message:userText})
+        });
+
+        // security check : If the server actually responded
+        if(!response.ok){
+            throw new Error('Server Disconnected');
+        }
+
+        //Unwrap the server's response
+        const data = await response.josn();
+
+        // Injecting AI's response into the chat
+        appendMessage(data.reply,'bot-message');
+    }
+    catch(error){
+        console.error('Connection error',error)
+        appendMessage('Chad is not completed. Please Wait.','bot-message');
+    }
+}
