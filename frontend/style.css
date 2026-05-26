@@ -121,7 +121,8 @@
     position: fixed;
     height: 80px;
     width: 80px;
-    background-color: black;
+    /* background-color: black; */
+    background-color: #333;
     color: white;
     text-align: center;
 
@@ -141,7 +142,8 @@
 
 /* Change color slightly when hovering over the widget */
 #chat-widget:hover {
-    background-color: #333;
+    /* background-color: #333; */
+    background-color: black;
 }
 
  

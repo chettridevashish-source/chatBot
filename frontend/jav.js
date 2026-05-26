@@ -19,9 +19,7 @@ function appendMessage(text,sender){
     body.scrollTop = body.scrollHeight;
 }
 
-
-//Adding Listener
-send.addEventListener('click',function(){
+function sendMessage(){
     const message = userInput.value.trim();
 
     if(!message) return
@@ -40,7 +38,20 @@ send.addEventListener('click',function(){
     // Actual connection directly from API function(Not stimulated).
 
     botReply(message);
+}
+
+// Listener for send button
+send.addEventListener('click',function(){
+    sendMessage();
 });
+
+//Listener for Enter in Input box
+userInput.addEventListener('keydown',function(event){
+    if(event.key == 'Enter' && !event.shiftKey){
+        event.preventDefault();
+        sendMessage();
+    }
+})
 
 // THE API PART
 
@@ -64,7 +75,7 @@ async function botReply(userText){
         }
 
         //Unwrap the server's response
-        const data = await response.josn();
+        const data = await response.json();
 
         // Injecting AI's response into the chat
         appendMessage(data.reply,'bot-message');
