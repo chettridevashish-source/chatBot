@@ -1,0 +1,122 @@
+[
+    {
+        "service": "General SSO",
+        "category": "Login or Sign in",
+        "question": "How do I create an account in SSO or login into one?",
+        "answer": "Step-1: Enter the required field i.e., Email, Password and Captcha to access the User's Dashboard of the SSO in the page or if the user is new, they should select the 'Create Account' option to register and create their account. Step-2: After filling up the required details click on the ‘Login’ button. Step-3: Now, User’s Dashboard will appear."
+    },
+    {
+        "service": "Schedule Tribe Certificate",
+        "category": "Required documents",
+        "question": "What are the documents required for Schedule Tribe (ST) Certificate?",
+        "answer": "The mandatory documents are: 1. Original Citizenship Proof of Self/Father (allowed docs: COI-Self, COI-Father, SSC-Self, SSC-Father). 2. Recommendation (Panchayat Recommendation). 3. Father-Child Relationship Proof (School Certificate/Birth Certificate). 4. Issued Certificate (Scanned copy of Issued Certificate). 5. Attested Citizenship Proof of Self/Father (Attested Copy of Original Proof)."
+    },
+    {
+        "service": "Schedule Tribe Certificate",
+        "category": "Application guidelines",
+        "question": "What are some guidelines for Schedule Tribe Certificate?",
+        "answer": "(1) Application Fee of Rs. 100 is required. Fee is exempted for Issued Certificate Digitization. (2) Applicants to produce Birth Certificate/Panchayat Report to certify the name of their father and caste/tribe of parents. (3) Enter applicant's details and upload necessary documents to submit the application. (4) Make sure the uploaded documents are clear and readable format to avoid return of the application. (5) Note: The selected file's name must not contain any special characters or symbols, and its size must not exceed 10 MB."
+    },
+    {
+        "service": "Schedule Tribe Certificate",
+        "category": "Fee",
+        "question": "What are the fees for the issuance of Schedule Tribe Certificate?",
+        "answer": "Application Fee of Rs. 100 is required. Fee is exempted for Issued Certificate Digitization."
+    },
+    {
+        "service": "Schedule Tribe Certificate",
+        "category": "Applying for Schedule Tribe Certificate",
+        "question": "How to apply for Schedule Tribe Certificate?",
+        "answer": "Step 0: From the SSO user's dashboard click into the ST Certificate Service option which lead you to the appropriate website. Step 1: As you can see in the User's Dashboard, there is an option for a new application. Clicking on that button will reveal the application page. Step 2: After completing the application details the user/applicant must post their photo and signature. Step 3: After click on 'Save & Continue,' the next page will open, asking the applicant to upload the documents that are required. Step 4: The user must now upload the necessary documents by first choosing the document's name from the drop-down menu, clicking on 'Choose File,' choosing the correct file, and then click on upload, the file will be uploaded successfully. Note: The selected file's name must not contain any special characters or symbols, and its size must not exceed 10 MB. Step 5: After selecting 'Save & Continue,' the applicant can check their uploaded documents and review them before final submission. Step 6: After clicking on pay and submit, a pop-up screen will appear asking the Users to confirm their submission. Step 7: If the transaction was successfully completed, the applicant will receive an acknowledgment slip and the application will be submitted. The applicant can check whether or not their application has been submitted by clicking the 'My Application' section. The applicant can view the status of their application as 'Submitted'."
+    },
+    {
+        "service": "Schedule Caste Certificate",
+        "category": "Required documents",
+        "question": "What are the documents required for Schedule Caste (SC) Certificate?",
+        "answer": "The mandatory documents are: 1. Original Citizenship Proof of Self/Father (allowed docs: COI-Self, COI-Father, SSC-Self, SSC-Father). 2. Recommendation (Panchayat Recommendation). 3. Father-Child Relationship Proof (School Certificate/Birth Certificate). 4. Issued Certificate (Scanned copy of Issued Certificate). 5. Attested Citizenship Proof of Self/Father (Attested Copy of Original Proof). 6. Although not mandatory, you could use an SC Community Recommendation."
+    },
+    {
+        "service": "Schedule Caste Certificate",
+        "category": "Application guidelines",
+        "question": "What are some guidelines for Schedule Caste Certificate?",
+        "answer": "Application Fee of Rs. 100 is required. Fee is exempted for Issue Certificate Digitization. Applicants to produce Birth Certificate/Panchayat Report to certify the name of their father and caste/tribe of parents. Applicant should profess either the Hindu or the Sikh religion in order to apply for the certificate. Enter applicant's details and upload necessary documents to submit the application. Make sure the uploaded documents are clear and readable format to avoid return of the application."
+    },
+    {
+        "service": "Schedule Caste Certificate",
+        "category": "Applying for Schedule Caste Certificate",
+        "question": "How to apply for Schedule Caste (SC) Certificate?",
+        "answer": "Step 1: As you can see in the User's Dashboard, there is an option for a new application. Clicking on that button will reveal the application page. Step 2: After completing the application details the user/applicant must post their photo and signature. Step 3: After click on 'Save & Continue,' the next page will open, asking the applicant to upload the documents that are required. Step 4: The user must now upload the necessary documents by first choosing the document's name from the drop-down menu, clicking on 'Choose File,' choosing the correct file, and then click on upload, the file will be uploaded successfully. Note: The selected file's name must not contain any special characters or symbols, and its size must not exceed 10 MB. Step 5: After selecting 'Save & Continue,' the applicant can check their uploaded documents and review them before final submission. Step 6: After clicking on pay and submit, a pop-up screen will appear asking the Users to confirm their submission. Step 7: If the transaction was successfully completed, the applicant will receive an acknowledgment slip and the application will be submitted. The applicant can check whether or not their application has been submitted by clicking the 'My Application' section. The applicant can view the status of their application as 'Submitted'."
+    },
+    {
+        "service": "Income Certificate",
+        "category": "Required documents",
+        "question": "What are the documents required for Income Certificate?",
+        "answer": "Salary Slip is mandatory for Salary income but not Agriculture income, and Land Ownership Proof (Parcha) is mandatory for Agriculture income but not salary income. The following are not mandatory in both salary income and Agriculture income: 1. Citizen Proof (Allowed docs: COI, SSC, ICC, Voter ID Card, Other), 2. Affidavit, 3. Recommendation (Panchayat Recommendation, Councilor Recommendation, MLA Recommendation, Other)."
+    },
+    {
+        "service": "Income Certificate",
+        "category": "Application guidelines",
+        "question": "What are some guidelines for Income Certificate?",
+        "answer": "1. Application Fee of Rs. 100 is required. 2. You need to download the Affidavit before applying, fill up the details and upload it while uploading other annexure. 3. Enter applicant's details and upload necessary documents to submit the application. 4. Make sure the uploaded documents are clear and readable format to avoid return of the application."
+    },
+    {
+        "service": "Income Certificate",
+        "category": "Applying for Income Certificate",
+        "question": "How to apply for Income Certificate?",
+        "answer": "Step 1: As you can see in the User's Dashboard, there is an option for a new application. Clicking on that button will redirect you to the new application page. Step 2: After completing the application details the user/applicant must post their photo and signature. Step 3: After click on 'Save & Continue,' the next page will appear, where the applicant has to upload the documents that are required. Step 4: Now the user must upload the necessary documents by first choosing the document's name from the drop-down menu, clicking on 'Choose File,' choosing the correct file, and then click on upload, the file will be uploaded successfully. Note: The selected file's name must not contain any special characters or symbols, and its size must not exceed 10 MB. Step 5: After selecting 'Save & Continue,' the applicant can check their uploaded documents and review them before final submission. Step 6: After clicking on ‘Pay and Submit’, a pop-up will appear in the screen where the Users have to confirm their submission. Step 7: After the successful transaction, the applicant will receive an acknowledgment slip along with the QR code and the application will be submitted. The applicant can also check whether or not their application has been submitted by clicking on the 'My Application' where the status of the application will be as 'Submitted'."
+    },
+    {
+        "service": "Employment Card Certificate",
+        "category": "Required documents",
+        "question": "What are the documents required for Employment Card Certificate?",
+        "answer": "The documents may differ depending on whether the applicant is local or not. The mandatory documents are: 1. Original Citizenship Certificate: COI, SSC, Sikkim Subject (for locals) and Residential Certificate (for non-locals). 2. Identity Certificate: Voter's ID (for both). 3. Marital Status Certificate: Unmarried Certificate (for both). 4. Recommendation: Area MLA Recommendation, Ward Councillor Recommendation, Panchayat Recommendation (for both). 5. Issued Employment Card: Scanned Copy Of Employment Card (for both) (if for issued card). 6. Attested Citizenship Proof: Attested Copy of Original Proof (for both)."
+    },
+    {
+        "service": "Employment Card Certificate",
+        "category": "Application guidelines",
+        "question": "What are some guidelines for Employment Card Certificate?",
+        "answer": "Application Fee of Rs. 100 is required for new applications. Renewal Fee of Rs. 50 is charged if the validity of the card is expired. Enter applicant's details and upload necessary documents to submit the application. Make sure the uploaded documents are clear and in a readable format to avoid the application from being returned."
+    },
+    {
+        "service": "Employment Card Certificate",
+        "category": "Applying for Employment Card Certificate",
+        "question": "How to apply for Employment Card Certificate?",
+        "answer": "Step 1: As you can see in the User's Dashboard, there is an option for a new application. Clicking on that button will redirect you to the new application page. Step 2: After completing the application details the user/applicant must post their photo and signature. Step 3: After click on 'Save & Continue,' the next page will appear, where the applicant has to upload the documents that are required. Step 4: Now the user must upload the necessary documents by first choosing the document's name from the drop-down menu, clicking on 'Choose File,' choosing the correct file, and then click on upload, the file will be uploaded successfully. Note: The selected file's name must not contain any special characters or symbols, and its size must not exceed 10 MB. Step 5: After selecting 'Save & Continue,' the applicant can check their uploaded documents and review them before final submission. Step 6: After clicking on ‘Pay and Submit’, a pop-up will appear in the screen where the Users have to confirm their submission. Step 7: After the successful transaction, the applicant will receive an acknowledgment slip along with the QR code and the application will be submitted. The applicant can also check whether or not their application has been submitted by clicking on the 'My Application' where the status of the application will be as 'Submitted'. To renew an offline card, the user can click on 'Renew Offline Card' where the applicant has to follow the same steps as mentioned above and in addition, they have to fill the 'Issued Card Details'."
+    },
+    {
+        "service": "Firm Registration Certificate",
+        "category": "Required documents",
+        "question": "What are the documents required for Firm Registration Certificate?",
+        "answer": "The Mandatory documents are: 1. Original Certificate of Identification (COI, RC). 2. Owner NOC (Building Owner NOC, Land Owner NOC). 3. Parcha/Mutation Copy. 4. Trade License. 5. Witness 1 Proof (Self Attested): Witness 1 ID Card. 6. Witness 2 Proof (Self Attested): Witness 2 ID Card. 7. Attested Citizenship Proof (Attested Copy of Original Proof)."
+    },
+    {
+        "service": "Firm Registration Certificate",
+        "category": "Application guidelines",
+        "question": "What are some guidelines for Firm Registration Certificate?",
+        "answer": "Application fee of Rs. 100 is required. Enter applicant's details and upload necessary documents to submit the application. Make sure the uploaded documents are clear and readable format to avoid return of the application. Applicant needs to pay the Firm Registration Fee of Rs. 2500 for COI/SSC Holder or Rs. 3500 for Non-COI/SSC & RC Holder post application approval for receiving the certificate."
+    },
+    {
+        "service": "Firm Registration Certificate",
+        "category": "Applying for Firm Registration Certificate",
+        "question": "How to apply for Firm Registration Certificate?",
+        "answer": "Step 1: As you can see in the User's Dashboard, there is an option for a new application. Clicking on that button will reveal the application page. The application process consists of three steps. First, the applicant is required to provide their application details. In the second step, the applicant needs to upload the necessary documents. Finally, the applicant is required to pay the application fee and submit their application. Step 2: After completing the application details the user/applicant must post their photo and signature. Step 3: After click on 'Save & Continue,' the next page will open, asking the applicant to upload the documents that are required. Step 4: The user must now upload the necessary documents by first choosing the document's name from the drop-down menu, clicking on 'Choose File,' choosing the correct file, and then click on upload, the file will be uploaded successfully. Note: The selected file's name must not contain any special characters or symbols, and its size must not exceed 10 MB. Step 5: After selecting 'Save & Continue,' the applicant can check their uploaded documents and review them before final submission. Step 6: After clicking on pay and submit, a pop-up screen will appear asking the Users to confirm their submission. Step 7: If the transaction was successfully completed, the applicant will receive an acknowledgment slip and the application has been submitted. Step 8: The applicant can check whether or not their data has been submitted by clicking the 'My Application' section. The applicant can view the status of their application as 'Submitted'. Step 9: Once the application has been successfully submitted, it will undergo a verification process, once the officer approves the application, the applicant will be notified in the application updates section. The notification will indicate that they need to proceed with the payment of the registration fee. Step 10: Upon clicking the notification, a new page will be revealed, prompting the applicant to proceed with the registration fee payment. Step 11: Next, the applicant is required to make the payment by clicking on the 'Make Payment' button. Upon doing so, a pop-up confirmation will appear. Step 12: Once the applicant has successfully made the registration fee payment, they will receive an acknowledgment slip. The application will then be submitted. The applicant can check whether or not their application has been submitted by clicking the 'My Application' section. The applicant can view the status of their application as 'Registration Fee Paid'."
+    },
+    {
+        "service": "Primitive Tribe Certificate",
+        "category": "Required documents",
+        "question": "What are the documents required for Primitive Tribe Certificate?",
+        "answer": "The mandatory documents are: 1. Citizenship Proof Of Self (SSC, COI). 2. Citizenship Proof of Father (SSC, COI). 3. Father-Child Relationship Proof (School Certificate, Birth Certificate). 4. ST Certificate. 5. Recommendation from Lepcha Association."
+    },
+    {
+        "service": "Primitive Tribe Certificate",
+        "category": "Application guidelines",
+        "question": "What are some guidelines for Primitive Tribe Certificate?",
+        "answer": "Application Fee of Rs. 100 is required. Applicant must possess ST certificate in order to apply for Primitive Tribe Certificate. Enter applicant's details and upload necessary documents to submit the application. Make sure the uploaded documents are clear and readable format to avoid return of the application."
+    },
+    {
+        "service": "Primitive Tribe Certificate",
+        "category": "Applying for Primitive Tribe Certificate",
+        "question": "How to apply for Primitive Tribe Certificate?",
+        "answer": "Step 1: As you can see in the User's Dashboard, there is an option for a new application. Clicking on that button will reveal the application. Step 2: After completing the application details the user/applicant must post their photo and signature. Step 3: After click on 'Save & Continue' the next page will open, asking the applicant to upload the documents that are required. Note: The selected file's name must not contain any special characters or symbols, and its size must not exceed 10 MB. Step 4: After selecting 'Save & Continue,' the applicant can check their uploaded documents and review them before final submission. Step 5: After clicking on pay and submit, a pop-up screen will appear asking the Users to confirm their submission. Step 6: If the transaction was successfully completed, the applicant will receive an acknowledgment slip and the application will be submitted. The applicant can check whether or not their data has been submitted by clicking the 'My Application' section. The applicant can view the status of their application as 'Submitted'."
+    }
+]
