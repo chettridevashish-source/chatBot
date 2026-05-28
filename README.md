@@ -1,7 +1,7 @@
 <b><h2>CHatBot</h2></b>
 
 <p>
-    Memebers
+    Members
     <ol>
       <li>Devashish</li>
       <li>Prayash</li>
