@@ -1,36 +1,40 @@
  body{
     width: auto;
-    height: auto;
-    background-color: rgb(248, 248, 248);
+    height: 100%;
+    background-color: rgb(126, 88, 209);
 
 }
 
 
-#chat-toggle{
-    display: none;  /* Hiding the actual checkbox */
+/* #chat-toggle{
+    display: none;  
 }
 #chat-toggle:checked ~ #chat-container{
     visibility: visible;
     opacity: 1;
-}
+} */
 
 
 #chat-container{
-    border-radius: 16px;
-    border: solid;
-    border-color:black;
+    
+    /* border: 0px 0px 16px 16px solid; */
+    border: 3px solid rgb(58, 57, 57);
+    border-radius: 20px;
     width: 450px;
     height: 650px;
-   background-color: rgba(51, 49, 49);
+    /* background-color: rgb(224, 224, 224); */
+   background-color: white;
     position: fixed;
     /* The fixed value will keep the container fixed to the screen */
     bottom: 25%;
     right: 40px;
     text-align: center;
 
-    visibility: hidden;     /* To hide it by defualt */
-    opacity: 0;
-    transition: opacity 0.3s ease; /* Adds fade in animation */
+    overflow: hidden;
+    /* visibility: hidden;     
+    opacity: 0; */
+    /* transition: opacity 0.3s ease; */
+    transition: all 1s ease 0s;
 }
 /* #chat-container::after{
     content: '';
@@ -43,20 +47,41 @@
     z-index: -1;
 } */
 
+#cross{
+    background-color: rgb(196, 22, 22);
+    color: white;
+    height: 30px;
+    width: 30px;
+    /* border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px; */
+    border-radius: 5px;
+    border-top-right-radius: 10px;
+    z-index: 1;
+
+    position: absolute;
+    right:5px;
+    top :4px;
+    cursor: pointer;
+}
+#cross:hover{
+    background-color: red;
+}
 
 
 
 #chat-header{
     position: absolute;
-    background-color: rgba(29, 29, 29);
-    color: rgb(231, 231, 231);
+    /* background-color: white; */
+    background-color: rgb(224, 224, 224);
+    color: black;
     text-align: center;
     width: 100%;
     top:0px;  /* doesnt matter ig */
     left: 0px;
     height: 60px;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
+    /* border-top-left-radius: 16px; */
+    /* border-top-right-radius: 16px; */
+    border-bottom: 1px solid rgb(163, 162, 162);
 
     display: flex;
     justify-content: center;
@@ -71,15 +96,49 @@
 
    /* Setting anchors such that the top is just below chat-header and bottom just above chat-text*/
    top:60px;
-   bottom: 60px;
-   padding: 3px;
-
+   bottom: 75px;
+   padding: 5px;
+   border-bottom: 0.5px solid rgb(163, 162, 162);
 
    left:0px;
    right:0px; /* Pinning the sides */
    font-size: medium;
 
-   overflow-y: auto; /* This is very important for chats. It says if the chat-body ever runs out of space, move it towards y-axis*/
+    overflow-y: auto; /*This is very important for chats. It says if the chat-body ever runs out of space, move it towards y-axis */
+}
+
+/* BASE BUBBLE */
+.message{
+    padding: 10px 15px;
+    border-radius:15px;
+    margin-bottom: 10px;
+    width: fit-content;
+    max-width: 80%;
+    word-wrap: break-word;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:14px;
+    text-align: left;
+    box-shadow: 5px 5px 7px rgb(145, 143, 143);
+}
+
+/* USER BUBBLE(blue n on right) */
+.user-message{
+    background-color: #0056b3;
+    color: white;
+    margin-left: auto;  /* Pushes bubbele to far right as margin-left is maxed */
+    /* border-top-right-radius: 2px; chat bubble tail */
+    border-radius: 12px 0px 12px 12px ;
+    /* box-shadow: 5px 5px 7px rgb(10, 10, 10); */
+}
+
+/* BOT BUBBLE (grey n left)*/
+.bot-message{
+    background-color: #0f0f0f2d;
+    color: black;
+    margin-right:auto;  /* Pushes bubbele to far left as margin-right is maxed */
+    /* border-top-left-radius: 2px; */
+    border-radius: 0px 12px 12px 12px;
+    /* box-shadow: 5px 5px 7px rgb(10, 10, 10); */
 }
 
 
@@ -87,44 +146,53 @@
     /* The absolute value of position attribute keeps dis container in the same position to it's nearest parent container. i.e no matter wherer i move chat-container, this text will remain in the same position in the container */
     position: absolute;     
     bottom: 0px;
-    left: 0px;
-    right: 0px;
-    padding-left: 10px;
+    left: 10px;
+    right: 12px;
+    bottom: 15px;
+    /* padding-left: 10px;
     padding-right: 10px;
+    padding-bottom: 10px; */
+    padding: 10px;
 
     display : flex; /* forces input and button in the same horizontal row*/
     gap: 10px;
     align-items: center; /* Vertically centers the input and send button */
 
     /* width: 100%; */
-    height:60px;
-    background-color: rgba(29, 29, 29);
-    border-bottom-left-radius: 16px;
-    border-bottom-right-radius: 16px;
-    /* border-top: solid; */
+    overflow: hidden;
+    height:20px;
+    border-radius: 15px;
+    background-color: rgb(224, 224, 224);
+    border-top: 2px solid rgb(110, 110, 110);
+    border-left: 2px solid rgb(110, 110, 110);
+
+    box-shadow: 5px 3px 5px black;
+    /* border: none; */
+    /* border-bottom-left-radius: 16px; */
+    /* border-bottom-right-radius: 16px; */
 }
 #chat-text input{ /* Name of a tag inside the class or id can be used to specify the tag */
     flex : 1;  /*  Sends send button to far right side */
-    border: 1px solid #a0aab5; /* The soft grey border from the image */
-    border-radius: 3px; /* Creates the beautifully rounded "pill" edges */
+    border: none;
+    border-radius: 5px; /* Creates the beautifully rounded "pill" edges */
     outline: none;
+    background-color: rgb(224, 224, 224);
     font-family: inherit;
-    height: 20px;
+    height: 30px;
     font-size:medium;
+    margin: 0px;
 }
 
 
 
-#sendbutton:hover{
-    border: 0.5px solid white;
-}
+
 #sendbutton {
     background-color: #0056b3; /* The official blue */
     color: white;
     border: none;
     border-radius: 10px; /* Slight rounding on the square button */
     width: 30px;         /* Fixed width */
-    height: 30px;        /* Fixed height to make it a perfect square */
+    height: 28px;        /* Fixed height to make it a perfect square */
     
     /* Flexbox inside the button to perfectly center the icon */
     display: flex;
@@ -134,14 +202,15 @@
     transition: background-color 0.2s ease;
 }
 
-
-
+#sendbutton:hover{
+    border: 5px solid #0056b3;
+}
 #chat-widget{
     position: fixed;
     height: 90px;
     width: 90px;
     /* background-color: black; */
-    background-color: #333;
+    background-color: #5B00E8;
     color: white;
     text-align: center;
 
@@ -157,39 +226,107 @@
     cursor: pointer; /* Makes the mouse turn into a pointing hand */
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     z-index: 100; /* Ensures the button is always on top of other elements */
+    box-shadow: 3px 3px 5px black;
 }
 
 /* Change color slightly when hovering over the widget */
 #chat-widget:hover {
-    /* background-color: #333; */
-    background-color: black;
+    box-shadow: 4px 4px 10px black;
+    height: 95px;
+    width: 95px;
+    transition: all 1s ease 0s;
 }
 
- 
-/* BASE BUBBLE */
-.message{
-    padding: 10px 15px;
-    border-radius:15px;
-    margin-bottom: 10px;
-    width: fit-content;
-    max-width: 80%;
-    word-wrap: break-word;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size:14px;
+.opacity{
+    opacity: 0;
+    visibility: hidden;
+} 
+
+
+
+
+
+/* The Base Avatar Architecture */
+.message-row {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    gap: 8px;
+    width: 100%;
 }
 
-/* USER BUBBLE(blue n on right) */
-.user-message{
-    background-color: #0056b3;
-    color:white;
-    margin-left: auto;  /* Pushes bubbele to far right as margin-left is maxed */
-    border-bottom-right-radius: 2px; /* chat bubble tail */
+/* .user-row {
+    justify-content: center;
 }
 
-/* BOT BUBBLE (grey n left)*/
-.bot-message{
-    background-color: #0f0f0f2d;
-    color: black;
-    margin-right:auto;  /* Pushes bubbele to far left as margin-right is maxed */
-    border-bottom-left-radius: 2px;
+.bot-row {
+    justify-content: flex-start;
+} */
+
+
+
+.avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 12px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    
+    /* NEW: Flexbox to perfectly center the text */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 16px;
+    
+    /* NEW: Prevents the circle from squishing into an oval if the chat gets crowded */
+    flex-shrink: 0; 
+}
+
+/* Specific Colors */
+.user-avatar {
+    background-color: #5B00E8;
+    color: white;
+}
+
+.bot-avatar {
+    background-color: #5B00E8;
+    color: white;
+}
+
+
+
+
+
+
+/* 1. The Typing Bubble Container */
+.typing-indicator {
+    display: flex;
+    gap: 4px; /* Space between the dots */
+    align-items: center;
+    justify-content: center;
+    height: 20px; /* Keeps the bubble from collapsing */
+}
+
+/* 2. The Dots */
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #5B00E8; /* Chad's purple */
+    border-radius: 50%;
+    animation: bounce 1.4s infinite ease-in-out both;
+}
+
+/* 3. Stagger the animation so they don't bounce at the exact same time */
+.typing-dot:nth-child(1) { animation-delay: -0.32s; }
+.typing-dot:nth-child(2) { animation-delay: -0.16s; }
+.typing-dot:nth-child(3) { animation-delay: 0s; }
+
+/* 4. The Physics of the Bounce */
+@keyframes bounce {
+    0%, 80%, 100% { 
+        transform: scale(0); /* Shrink to nothing */
+    }
+    40% { 
+        transform: scale(1); /* Pop to full size */
+    }
 }
