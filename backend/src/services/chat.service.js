@@ -11,11 +11,11 @@ const ssoData = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
 
 export const processUserQuery = async (userMessage) => {
   try {
-   //the response is injected in this ai model
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",
       contents: userMessage,
       config: {
+        //INSTRUCTION TO THE GEMINI LLM
         systemInstruction: `
           You are the official AI Chatbot Assistant for the Sikkim Single Sign-On (SSO) portal.
           Your task is to answer citizen queries politely and accurately using ONLY the provided JSON context below.
