@@ -84,15 +84,15 @@ function appendMessage(text, senderType){
 
 function sendMessage(){
     const message = userInput.value.trim();
+    // We use userInput.value and not.textContetn as textContent is used add text between the elemnts, so when u use it it adds <div> here </div>. But since, input doesnt  have closing tag, it doesnt work in it.
 
+    //clear input box
+    userInput.value = '';
+    
     if(!message) return
 
     // print the users message
     appendMessage(message,'user-message');
-
-    //clear input box
-    userInput.value = ''
-
     // stimulate backend (delay caused by backend)
         // setTimeout(function(){
         //     appendMessage("Brain not biult by backend",'bot-message');
@@ -100,6 +100,7 @@ function sendMessage(){
     
     // Actual connection directly from API function(Not stimulated).
 
+    showTypingIndicator();
     botReply(message);
 }
 
@@ -140,12 +141,17 @@ async function botReply(userText){
         //Unwrap the server's response
         const data = await response.json();
 
+        removeTypingIndicator();
+
         // Injecting AI's response into the chat
-        appendMessage(data.reply,'bot-message');
+        appendMessage(data.reply,'bot-message');                
     }
     catch(error){
         console.error('Connection error',error)
-        appendMessage('Chad is not completed. Please Wait.','bot-message');
+
+        removeTypingIndicator();
+
+        appendMessage('Chad is not completed. Please Wait. The backend needs to be connected. Writing more lines to see how it looks on the screen','bot-message');
     }
 }
 
@@ -189,3 +195,37 @@ function removeTypingIndicator() {
     }
 }
 // -----------------------------------
+
+
+
+
+// event manager
+// --- Life Event Manager Router ---
+document.addEventListener('click', function(event) {
+    // Check if the clicked element is one of our event buttons
+    if (event.target.classList.contains('event-btn')) {
+        const eventType = event.target.getAttribute('data-event');
+        
+        // Hide the welcome selection area cleanly
+        const welcomeBox = document.getElementById('welcome-container');
+        if (welcomeBox) welcomeBox.style.display = 'none';
+
+        // Route the explicit intents securely
+        if (eventType === 'shop') {
+            appendMessage("🏬 I want to open a shop / business in Sikkim.", "user");
+            showTypingIndicator();
+            // Send the hard-coded context instruction straight to the backend
+            botReply("CONTEXT_ROUTE: USER_WANTS_TO_OPEN_BUSINESS_TRADE_LICENSE");
+        } 
+        else if (eventType === 'student') {
+            appendMessage("🎓 I need to apply for student certificates.", "user");
+            showTypingIndicator();
+            botReply("CONTEXT_ROUTE: USER_IS_A_STUDENT_NEEDING_ST_OR_COI");
+        } 
+        else if (eventType === 'land') {
+            appendMessage("🏔️ I need land or lineage document verification.", "user");
+            showTypingIndicator();
+            botReply("CONTEXT_ROUTE: USER_NEEDS_LAND_LINEAGE_PROOF");
+        }
+    }
+});
