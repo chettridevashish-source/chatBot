@@ -140,6 +140,7 @@
     margin-right:auto;  /* Pushes bubbele to far left as margin-right is maxed */
     /* border-top-left-radius: 2px; */
     border-radius: 0px 12px 12px 12px;
+    white-space: pre-wrap;
     /* box-shadow: 5px 5px 7px rgb(10, 10, 10); */
 }
 
