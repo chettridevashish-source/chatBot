@@ -1,18 +1,9 @@
  body{
     width: auto;
     height: 100%;
-    background-color: rgb(126, 88, 209);
+    background-color: rgb(161, 51, 31);
 
 }
-
-
-/* #chat-toggle{
-    display: none;  
-}
-#chat-toggle:checked ~ #chat-container{
-    visibility: visible;
-    opacity: 1;
-} */
 
 
 #chat-container{
@@ -98,7 +89,7 @@
    /* Setting anchors such that the top is just below chat-header and bottom just above chat-text*/
    top:60px;
    bottom: 75px;
-   padding: 5px;
+   padding: 5px 7px;
    border-bottom: 0.5px solid rgb(163, 162, 162);
 
    left:0px;

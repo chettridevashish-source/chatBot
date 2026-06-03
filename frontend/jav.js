@@ -6,6 +6,8 @@ const button = document.getElementById('chat-widget');
 const cross = document.getElementById('cross');
 const container = document.getElementById('chat-container');
 
+let chatHistory = []
+
 // for chat to appear on presssing the widget
 button.addEventListener('click',function(){
     container.classList.remove('opacity');
@@ -88,20 +90,19 @@ function sendMessage(){
 
     //clear input box
     userInput.value = '';
-    
+
     if(!message) return
 
     // print the users message
     appendMessage(message,'user-message');
-    // stimulate backend (delay caused by backend)
-        // setTimeout(function(){
-        //     appendMessage("Brain not biult by backend",'bot-message');
-        // },1000);
-    
-    // Actual connection directly from API function(Not stimulated).
+
+    chatHistory.push({
+        role : "user",
+        parts : [{text:message}]
+    })
 
     showTypingIndicator();
-    botReply(message);
+    botReply();
 }
 
 // Listener for send button
@@ -130,7 +131,7 @@ async function botReply(userText){
                 'Content-Type': 'application/json'
             },
             // Turning text into for,at the server can read
-            body:JSON.stringify({message:userText})
+            body:JSON.stringify({history:chatHistory})
         });
 
         // security check : If the server actually responded
@@ -145,6 +146,11 @@ async function botReply(userText){
 
         // Injecting AI's response into the chat
         appendMessage(data.reply,'bot-message');                
+
+        chatHistory.push({// gemini api does not understand bot or message, the syntax must be strictly "model" and "text"
+            role:"model", 
+            parts:[{text:data.reply}]
+        })
     }
     catch(error){
         console.error('Connection error',error)
@@ -201,31 +207,60 @@ function removeTypingIndicator() {
 
 // event manager
 // --- Life Event Manager Router ---
+// document.addEventListener('click', function(event) {
+//     // Check if the clicked element is one of our event buttons
+//     if (event.target.classList.contains('event-btn')) {
+//         const eventType = event.target.getAttribute('data-event');
+        
+//         // Hide the welcome selection area cleanly
+//         const welcomeBox = document.getElementById('welcome-container');
+//         if (welcomeBox) welcomeBox.style.display = 'none';
+
+//         // Route the explicit intents securely
+//         if (eventType === 'shop') {
+//             appendMessage("🏬 I want to open a shop / business in Sikkim.", "user-message");
+//             showTypingIndicator();
+//             // Send the hard-coded context instruction straight to the backend
+//             botReply("CONTEXT_ROUTE: USER_WANTS_TO_OPEN_BUSINESS_TRADE_LICENSE");
+//         } 
+//         else if (eventType === 'student') {
+//             appendMessage("🎓 I need to apply for student certificates.", "user-message");
+//             showTypingIndicator();
+//             botReply("CONTEXT_ROUTE: USER_IS_A_STUDENT_NEEDING_ST_OR_COI");
+//         } 
+//         else if (eventType === 'land') {
+//             appendMessage("🏔️ I need land or lineage document verification.", "user-message");
+//             showTypingIndicator();
+//             botReply("CONTEXT_ROUTE: USER_NEEDS_LAND_LINEAGE_PROOF");
+//         }
+//     }
+// });
+
 document.addEventListener('click', function(event) {
-    // Check if the clicked element is one of our event buttons
     if (event.target.classList.contains('event-btn')) {
         const eventType = event.target.getAttribute('data-event');
-        
-        // Hide the welcome selection area cleanly
         const welcomeBox = document.getElementById('welcome-container');
         if (welcomeBox) welcomeBox.style.display = 'none';
 
-        // Route the explicit intents securely
+        let routingContext = "";
+
         if (eventType === 'shop') {
-            appendMessage("🏬 I want to open a shop / business in Sikkim.", "user");
-            showTypingIndicator();
-            // Send the hard-coded context instruction straight to the backend
-            botReply("CONTEXT_ROUTE: USER_WANTS_TO_OPEN_BUSINESS_TRADE_LICENSE");
-        } 
-        else if (eventType === 'student') {
-            appendMessage("🎓 I need to apply for student certificates.", "user");
-            showTypingIndicator();
-            botReply("CONTEXT_ROUTE: USER_IS_A_STUDENT_NEEDING_ST_OR_COI");
-        } 
-        else if (eventType === 'land') {
-            appendMessage("🏔️ I need land or lineage document verification.", "user");
-            showTypingIndicator();
-            botReply("CONTEXT_ROUTE: USER_NEEDS_LAND_LINEAGE_PROOF");
+            appendMessage("🏬 I want to open a shop / business in Sikkim.", "user-message");
+            routingContext = "CONTEXT_ROUTE: USER_WANTS_TO_OPEN_BUSINESS_TRADE_LICENSE";
+        } else if (eventType === 'student') {
+            appendMessage("🎓 I need to apply for student certificates.", "user-message");
+            routingContext = "CONTEXT_ROUTE: USER_IS_A_STUDENT_NEEDING_ST_OR_COI";
+        } else if (eventType === 'land') {
+            appendMessage("🏔️ I need land or lineage document verification.", "user-message");
+            routingContext = "CONTEXT_ROUTE: USER_NEEDS_LAND_LINEAGE_PROOF";
         }
+
+        chatHistory.push({
+            role: "user",
+            parts: [{ text: routingContext }]
+        });
+
+        showTypingIndicator();
+        botReply();
     }
 });
