@@ -122,7 +122,7 @@ userInput.addEventListener('keydown',function(event){
 
 async function botReply(userText){
     
-    const url = "https://embattled-blimp-duchess.ngrok-free.dev/chat";
+    const url = "http://localhost:3000/chat";
     try{
     
         const response = await fetch(url,{
