@@ -1,7 +1,7 @@
  body{
     width: auto;
     height: 100%;
-    background-color: rgb(161, 51, 31);
+    background-color: white;
 
 }
 
@@ -12,13 +12,13 @@
     border: 5px solid rgb(58, 57, 57);
     border-radius: 20px;
     box-shadow: 7px 7px 10px rgb(59, 58, 58);
-    width: 450px;
+    width: 500px;
     height: 650px;
     /* background-color: rgb(224, 224, 224); */
    background-color: white;
     position: fixed;
     /* The fixed value will keep the container fixed to the screen */
-    bottom: 25%;
+    bottom: 10%;
     right: 40px;
     text-align: center;
 
@@ -28,16 +28,32 @@
     /* transition: opacity 0.3s ease; */
     transition: all 1s ease 0s;
 }
-/* #chat-container::after{
-    content: '';
+.chat-container-enlarge{
+    width: 700px;
+    height: 750px;
+}
+
+
+#max{
+    height: 30px;
+    width: 30px;
+    z-index: 2;
+    top: 7px;
+    right: 50px;
     position: absolute;
-    height: 100%;
-    width: 100%;
-    background-color: red;
-     bottom: 25%;
-    right: 40px;
-    z-index: -1;
-} */
+    border: 0.5px solid black;
+    border-radius: 5px;
+    font-size: 20px;
+    background-color: rgb(224, 224, 224);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#max:hover{
+    border: 1px solid black;
+    box-shadow: 3px 3px 1px black;
+}
 
 #cross{
     background-color: rgb(196, 22, 22);
@@ -52,11 +68,12 @@
 
     position: absolute;
     right:5px;
-    top :4px;
+    top : 7px;
     cursor: pointer;
 }
 #cross:hover{
     background-color: red;
+    
 }
 
 
@@ -65,6 +82,7 @@
     position: absolute;
     /* background-color: white; */
     background-color: rgb(224, 224, 224);
+
     color: black;
     text-align: center;
     width: 100%;
@@ -78,18 +96,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
     z-index: 1;
 }
 
 
 #chat-body{
     position:absolute;
-   background-color: white;
+   /* background-color: black; */
+   background-image: url('govSkLogo3.jpg');
+   background-size:contain;
+   background-position: center;
+   background-repeat: no-repeat;
 
    /* Setting anchors such that the top is just below chat-header and bottom just above chat-text*/
    top:60px;
    bottom: 75px;
-   padding: 5px 7px;
+   padding: 10px 5px;
    border-bottom: 0.5px solid rgb(163, 162, 162);
 
    left:0px;
@@ -98,14 +121,17 @@
 
     overflow-y: auto; /*This is very important for chats. It says if the chat-body ever runs out of space, move it towards y-axis */
 }
-
 /* BASE BUBBLE */
 .message{
     padding: 10px 15px;
-    border-radius:15px;
+    /* border-radius:15px; */
     margin-bottom: 10px;
     /* width: fit-content;  what is it's use?? */
     max-width: 80%;
+    color:white;
+    /* background-color: rgba(125, 124, 143); */
+    /* background-color: #5B00E8; */
+    background-color: rgb(122, 96, 80);
     word-wrap: break-word;
     font-family: Arial, Helvetica, sans-serif;
     font-size:14px;
@@ -116,21 +142,22 @@
 /* USER BUBBLE(blue n on right) */
 .user-message{
     /* background-color: #0056b3; */
-    background-color: #0f0f0f2d;;
-    color: black;
+    /* background-color: #0f0f0f2d; */
+    /* color: black; */
     margin-left: auto;  /* Pushes bubbele to far right as margin-left is maxed */
     /* border-top-right-radius: 2px; chat bubble tail */
-    border-radius: 12px 0px 12px 12px ;
+    border-radius: 15px 15px 0px 15px ;
     /* box-shadow: 5px 5px 7px rgb(10, 10, 10); */
 }
 
 /* BOT BUBBLE (grey n left)*/
 .bot-message{
-    background-color: #0f0f0f2d;
-    color: black;
+    /* background-color: #0056b3; */
+    /* background-color: #0f0f0f2d; */
+    /* color: black; */
     margin-right:auto;  /* Pushes bubbele to far left as margin-right is maxed */
     /* border-top-left-radius: 2px; */
-    border-radius: 0px 12px 12px 12px;
+    border-radius: 15px 15px 15px 0px ;
     white-space: pre-wrap;
     /* box-shadow: 5px 5px 7px rgb(10, 10, 10); */
 }
@@ -230,7 +257,7 @@
 #sendbutton {
     background-color: #0056b3; /* The official blue */
     color: white;
-    border: none;
+    border: 0px solid blue;
     border-radius: 10px; /* Slight rounding on the square button */
     width: 30px;         /* Fixed width */
     height: 28px;        /* Fixed height to make it a perfect square */
@@ -244,14 +271,15 @@
 }
 
 #sendbutton:hover{
-    border: 5px solid #0056b3;
+    border: 10px solid #0056b3;
 }
+
 #chat-widget{
     position: fixed;
     height: 90px;
     width: 90px;
     /* background-color: black; */
-    background-color: #5B00E8;
+    background-color: #3c3a3f;
     color: white;
     text-align: center;
 
@@ -260,8 +288,8 @@
     justify-content: center;
     align-items: center;
 
-    bottom: 130px;
-    right: 40px;
+    bottom: 20px;
+    right: 20px;
     border-radius: 100%;
     
     cursor: pointer; /* Makes the mouse turn into a pointing hand */
@@ -272,10 +300,10 @@
 
 /* Change color slightly when hovering over the widget */
 #chat-widget:hover {
-    box-shadow: 4px 4px 10px black;
+    box-shadow: 5px 5px 10px black;
     height: 95px;
     width: 95px;
-    transition: all 1s ease 0s;
+    transition: all 0.5s ease 0s;
 }
 
 .opacity{
@@ -306,24 +334,23 @@
 
 
 
-.avatar {
+/* .avatar {
     width: 35px;
     height: 35px;
     border-radius: 12px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
     
-    /* NEW: Flexbox to perfectly center the text */
+    
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: bold;
     font-size: 16px;
     
-    /* NEW: Prevents the circle from squishing into an oval if the chat gets crowded */
+
     flex-shrink: 0; 
 }
 
-/* Specific Colors */
 .user-avatar {
     background-color: #5B00E8;
     color: white;
@@ -332,7 +359,7 @@
 .bot-avatar {
     background-color: #5B00E8;
     color: white;
-}
+} */
 
 
 
@@ -352,7 +379,7 @@
 .typing-dot {
     width: 8px;
     height: 8px;
-    background-color: #5B00E8; /* Chad's purple */
+    background-color: #e9e2e22d;
     border-radius: 50%;
     animation: bounce 1.4s infinite ease-in-out both;
 }

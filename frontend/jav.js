@@ -5,6 +5,7 @@ const body = document.getElementById('chat-body')
 const button = document.getElementById('chat-widget');
 const cross = document.getElementById('cross');
 const container = document.getElementById('chat-container');
+const max = document.getElementById('max');
 
 let chatHistory = []
 
@@ -12,6 +13,12 @@ let chatHistory = []
 button.addEventListener('click',function(){
     container.classList.remove('opacity');
     button.classList.add('opacity');
+})
+
+//max
+max.addEventListener('click',function(){
+    max.textContent = " — ";
+    container.classList.add('chat-container-enlarge');
 })
 
 // For the chat to disappear on pressing X.
@@ -57,22 +64,22 @@ function appendMessage(text, senderType){
         bubble.classList.add('user-message');
         
         // Add the User text and color
-        avatar.textContent = 'U';
-        avatar.classList.add('user-avatar');
+        // avatar.textContent = 'U';
+        // avatar.classList.add('user-avatar');
         
         // Append bubble first, then avatar
         row.appendChild(bubble); 
-        row.appendChild(avatar); 
+        // row.appendChild(avatar); 
     } else {
         row.classList.add('bot-row');
         bubble.classList.add('bot-message');
         
         // Add Chad's text and color
-        avatar.textContent = 'AI';
-        avatar.classList.add('bot-avatar');
+        // avatar.textContent = 'AI';
+        // avatar.classList.add('bot-avatar');
         
         // Append avatar first, then bubble
-        row.appendChild(avatar); 
+        // row.appendChild(avatar); 
         row.appendChild(bubble); 
     }
 
@@ -157,7 +164,7 @@ async function botReply(userText){
 
         removeTypingIndicator();
 
-        appendMessage('Chad is not completed. Please Wait. The backend needs to be connected. Writing more lines to see how it looks on the screen','bot-message');
+        appendMessage('Model is not connected. Please Wait. The backend needs to be connected. Writing more lines to see how it looks on the screen','bot-message');
     }
 }
 
@@ -173,7 +180,6 @@ function showTypingIndicator() {
 
     const avatar = document.createElement('div');
     avatar.classList.add('avatar', 'bot-avatar');
-    avatar.textContent = 'AI';
 
     // 2. Create the bubble, but instead of text, add the typing dots
     const bubble = document.createElement('div');
