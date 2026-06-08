@@ -8,6 +8,7 @@ const container = document.getElementById('chat-container');
 const max = document.getElementById('max');
 
 let chatHistory = []
+let isMax = false;
 
 // for chat to appear on presssing the widget
 button.addEventListener('click',function(){
@@ -17,8 +18,16 @@ button.addEventListener('click',function(){
 
 //max
 max.addEventListener('click',function(){
-    max.textContent = " — ";
-    container.classList.add('chat-container-enlarge');
+    if(isMax){
+        max.textContent = '❏';
+        isMax = false;
+    }
+    else{
+        max.textContent = '—';
+        isMax = true;
+    }
+    container.classList.toggle("maximize");
+
 })
 
 // For the chat to disappear on pressing X.
