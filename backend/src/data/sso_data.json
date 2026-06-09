@@ -1,248 +1,196 @@
 {
-  "sso_services": {
-    "general_sso": {
-      "service_name": "General SSO",
-      "category": "Login or Sign in",
-      "keywords": [
-        "login",
-        "sign in",
-        "create account",
-        "register"
-      ],
-      "application_steps": [
-        "Enter the required fields (Email, Password and Captcha) to access the User's Dashboard, or select the 'Create Account' option to register if you are a new user.",
-        "After filling up the required details, click on the 'Login' button.",
-        "The User's Dashboard will appear."
-      ]
-    },
-    "schedule_tribe_certificate": {
-      "service_name": "Schedule Tribe Certificate",
-      "keywords": [
-        "ST certificate",
-        "schedule tribe",
-        "tribal cert"
-      ],
-      "fees": {
-        "application_fee": 100,
-        "note": "Fee is exempted for Issued Certificate Digitization."
-      },
-      "guidelines": [
-        "Applicants must produce a Birth Certificate/Panchayat Report to certify the name of their father and caste/tribe of parents.",
-        "Enter applicant's details and upload necessary documents to submit the application.",
-        "Make sure the uploaded documents are in a clear and readable format to avoid the return of the application.",
-        "The selected file's name must not contain any special characters or symbols, and its size must not exceed 10 MB."
-      ],
-      "required_documents": {
-        "mandatory": [
-          "Original Citizenship Proof of Self/Father (COI-Self, COI-Father, SSC-Self, SSC-Father)",
-          "Recommendation (Panchayat Recommendation)",
-          "Father-Child Relationship Proof (School Certificate/Birth Certificate)",
-          "Issued Certificate (Scanned copy of Issued Certificate)",
-          "Attested Citizenship Proof of Self/Father (Attested Copy of Original Proof)"
-        ]
-      },
-      "application_steps": [
-        "From the SSO user's dashboard click into the ST Certificate Service option which leads you to the appropriate website.",
-        "In the User's Dashboard, click on the option for a new application to reveal the application page.",
-        "Complete the application details and post your photo and signature.",
-        "Click on 'Save & Continue' to open the next page for document uploads.",
-        "Upload the necessary documents by choosing the document's name from the drop-down menu, clicking on 'Choose File', choosing the correct file, and clicking upload (Max size 10 MB, no special characters in filename).",
-        "Select 'Save & Continue' to check and review uploaded documents before final submission.",
-        "Click on pay and submit, and confirm your submission on the pop-up screen.",
-        "If successful, you will receive an acknowledgment slip. You can check the status in the 'My Application' section as 'Submitted'."
-      ]
-    },
-    "schedule_caste_certificate": {
-      "service_name": "Schedule Caste Certificate",
-      "keywords": [
-        "SC certificate",
-        "schedule caste",
-        "caste cert"
-      ],
-      "fees": {
-        "application_fee": 100,
-        "note": "Fee is exempted for Issue Certificate Digitization."
-      },
-      "guidelines": [
-        "Applicants must produce a Birth Certificate/Panchayat Report to certify the name of their father and caste/tribe of parents.",
-        "Applicant should profess either the Hindu or the Sikh religion in order to apply for the certificate.",
-        "Make sure the uploaded documents are clear and in a readable format to avoid return of the application."
-      ],
-      "required_documents": {
-        "mandatory": [
-          "Original Citizenship Proof of Self/Father (COI-Self, COI-Father, SSC-Self, SSC-Father)",
-          "Recommendation (Panchayat Recommendation)",
-          "Father-Child Relationship Proof (School Certificate/Birth Certificate)",
-          "Issued Certificate (Scanned copy of Issued Certificate)",
-          "Attested Citizenship Proof of Self/Father (Attested Copy of Original Proof)"
-        ],
-        "optional": [
-          "SC Community Recommendation"
-        ]
-      },
-      "application_steps": [
-        "In the User's Dashboard, click on the option for a new application to reveal the application page.",
-        "Complete the application details and post your photo and signature.",
-        "Click on 'Save & Continue' to open the next page for document uploads.",
-        "Upload the necessary documents by choosing the document's name from the drop-down menu, clicking on 'Choose File', choosing the correct file, and clicking upload (Max size 10 MB, no special characters in filename).",
-        "Select 'Save & Continue' to check and review uploaded documents before final submission.",
-        "Click on pay and submit, and confirm your submission on the pop-up screen.",
-        "If successful, you will receive an acknowledgment slip. You can check the status in the 'My Application' section as 'Submitted'."
-      ]
-    },
-    "income_certificate": {
-      "service_name": "Income Certificate",
-      "keywords": [
-        "income cert",
-        "proof of income",
-        "salary proof"
-      ],
-      "fees": {
-        "application_fee": 100
-      },
-      "guidelines": [
-        "You need to download the Affidavit before applying, fill up the details and upload it while uploading other annexures.",
-        "Make sure the uploaded documents are clear and in a readable format to avoid return of the application."
-      ],
-      "required_documents": {
-        "conditional": [
-          {
-            "condition": "Salary Income",
-            "document": "Salary Slip"
-          },
-          {
-            "condition": "Agriculture Income",
-            "document": "Land Ownership Proof (Parcha)"
-          }
-        ],
-        "optional": [
-          "Citizen Proof (COI, SSC, ICC, Voter ID Card, Other)",
-          "Affidavit",
-          "Recommendation (Panchayat, Councilor, MLA, Other)"
-        ]
-      },
-      "application_steps": [
-        "In the User's Dashboard, click on the option for a new application to redirect to the new application page.",
-        "Complete the application details and post your photo and signature.",
-        "Click on 'Save & Continue' to appear on the document upload page.",
-        "Upload the necessary documents by choosing the document's name from the drop-down menu, clicking on 'Choose File', choosing the correct file, and clicking upload (Max size 10 MB, no special characters in filename).",
-        "Select 'Save & Continue' to check and review uploaded documents before final submission.",
-        "Click on ‘Pay and Submit’, and confirm your submission on the pop-up screen.",
-        "After the successful transaction, you will receive an acknowledgment slip along with a QR code. Check status under 'My Application' as 'Submitted'."
-      ]
-    },
-    "employment_card_certificate": {
-      "service_name": "Employment Card Certificate",
-      "keywords": [
-        "employment card",
-        "job card",
-        "unemployment card",
-        "work registration"
-      ],
-      "fees": {
-        "application_fee": 100,
-        "renewal_fee": 50,
-        "note": "Renewal fee is charged if the validity of the card is expired."
-      },
-      "guidelines": [
-        "The documents may differ depending on whether the applicant is local or not.",
-        "Make sure the uploaded documents are clear and in a readable format to avoid the application from being returned."
-      ],
-      "required_documents": {
-        "mandatory": [
-          "Original Citizenship Certificate: COI, SSC, Sikkim Subject (for locals) or Residential Certificate (for non-locals)",
-          "Identity Certificate: Voter's ID",
-          "Marital Status Certificate: Unmarried Certificate",
-          "Recommendation: Area MLA Recommendation, Ward Councillor Recommendation, or Panchayat Recommendation",
-          "Issued Employment Card: Scanned Copy Of Employment Card (if applying for issued card)",
-          "Attested Citizenship Proof: Attested Copy of Original Proof"
-        ]
-      },
-      "application_steps": [
-        "In the User's Dashboard, click on the option for a new application to redirect to the new application page.",
-        "Complete the application details and post your photo and signature.",
-        "Click on 'Save & Continue' to appear on the document upload page.",
-        "Upload the necessary documents by choosing the document's name from the drop-down menu, clicking on 'Choose File', choosing the correct file, and clicking upload (Max size 10 MB, no special characters in filename).",
-        "Select 'Save & Continue' to check and review uploaded documents before final submission.",
-        "Click on ‘Pay and Submit’, and confirm your submission on the pop-up screen.",
-        "After successful transaction, receive an acknowledgment slip with QR code. Check status under 'My Application'.",
-        "To renew an offline card, click on 'Renew Offline Card', follow the same steps, and fill in the 'Issued Card Details'."
-      ]
-    },
-    "firm_registration_certificate": {
-      "service_name": "Firm Registration Certificate",
-      "keywords": [
-        "firm registration",
-        "business registration",
-        "company registration",
-        "shop registration"
-      ],
-      "fees": {
-        "application_fee": 100,
-        "registration_fee_coi_holder": 2500,
-        "registration_fee_non_coi_holder": 3500,
-        "note": "Registration fee is paid post application approval for receiving the certificate."
-      },
-      "guidelines": [
-        "The application process consists of three steps: application details, document upload, and fee payment/submission.",
-        "Make sure the uploaded documents are clear and in a readable format to avoid return of the application."
-      ],
-      "required_documents": {
-        "mandatory": [
-          "Original Certificate of Identification (COI, RC)",
-          "Owner NOC (Building Owner NOC, Land Owner NOC)",
-          "Parcha/Mutation Copy",
-          "Trade License",
-          "Witness 1 Proof (Self Attested): Witness 1 ID Card",
-          "Witness 2 Proof (Self Attested): Witness 2 ID Card",
-          "Attested Citizenship Proof (Attested Copy of Original Proof)"
-        ]
-      },
-      "application_steps": [
-        "In the User's Dashboard, click on the option for a new application to reveal the application page.",
-        "Complete the application details and post your photo and signature.",
-        "Click on 'Save & Continue' to open the next page for document uploads.",
-        "Upload the necessary documents by choosing the document's name from the drop-down menu, clicking on 'Choose File', choosing the correct file, and clicking upload (Max size 10 MB, no special characters in filename).",
-        "Select 'Save & Continue' to check and review uploaded documents before final submission.",
-        "Click on pay and submit, and confirm your submission on the pop-up screen.",
-        "Receive an acknowledgment slip. The application status changes to 'Submitted'.",
-        "Once verified and approved by the officer, you will receive a notification in the application updates section to proceed with the registration fee payment.",
-        "Click the notification to reveal a new page for registration fee payment.",
-        "Click on the 'Make Payment' button and confirm on the pop-up.",
-        "Receive a final acknowledgment slip. Check 'My Application' to view status as 'Registration Fee Paid'."
-      ]
-    },
-    "primitive_tribe_certificate": {
-      "service_name": "Primitive Tribe Certificate",
-      "keywords": [
-        "primitive tribe",
-        "PTG certificate",
-        "lepcha certificate"
-      ],
-      "fees": {
-        "application_fee": 100
-      },
-      "guidelines": [
-        "Applicant must possess an ST certificate in order to apply for a Primitive Tribe Certificate.",
-        "Make sure the uploaded documents are clear and in a readable format to avoid return of the application."
-      ],
-      "required_documents": {
-        "mandatory": [
-          "Citizenship Proof Of Self (SSC, COI)",
-          "Citizenship Proof of Father (SSC, COI)",
-          "Father-Child Relationship Proof (School Certificate, Birth Certificate)",
-          "ST Certificate",
-          "Recommendation from Lepcha Association"
-        ]
-      },
-      "application_steps": [
-        "In the User's Dashboard, click on the option for a new application to reveal the application.",
-        "Complete the application details and post your photo and signature.",
-        "Click on 'Save & Continue' to open the next page for document uploads (Max size 10 MB, no special characters in filename).",
-        "Select 'Save & Continue' to check and review uploaded documents before final submission.",
-        "Click on pay and submit, and confirm your submission on the pop-up screen.",
-        "If successful, receive an acknowledgment slip. Check 'My Application' section to view status as 'Submitted'."
-      ]
-    }
-  }
+"services": [
+{
+"service_id": "general_sso",
+"service_name": "General SSO",
+"category": "Authentication",
+"description": "Login and registration service for Sikkim SSO users.",
+"keywords": [
+"login",
+"sign in",
+"create account",
+"register"
+],
+"application_steps": [
+"Enter Email, Password and Captcha.",
+"Click Login.",
+"User Dashboard will appear."
+]
+},
+{
+"service_id": "st_certificate",
+"service_name": "Schedule Tribe Certificate",
+"category": "Certificates",
+"keywords": [
+"st certificate",
+"schedule tribe",
+"tribal certificate"
+],
+"fees": {
+"application_fee": 100
+},
+"required_documents": {
+"mandatory": [
+"Original Citizenship Proof of Self/Father",
+"Panchayat Recommendation",
+"Father-Child Relationship Proof",
+"Issued Certificate",
+"Attested Citizenship Proof"
+]
+},
+"application_steps": [
+"Open ST Certificate Service.",
+"Create New Application.",
+"Fill application details.",
+"Upload photo and signature.",
+"Upload required documents.",
+"Review application.",
+"Pay and submit.",
+"Receive acknowledgment slip.",
+"Track status under My Application."
+]
+},
+{
+"service_id": "sc_certificate",
+"service_name": "Schedule Caste Certificate",
+"category": "Certificates",
+"keywords": [
+"sc certificate",
+"schedule caste",
+"caste certificate"
+],
+"fees": {
+"application_fee": 100
+},
+"required_documents": {
+"mandatory": [
+"Original Citizenship Proof",
+"Panchayat Recommendation",
+"Father-Child Relationship Proof",
+"Issued Certificate",
+"Attested Citizenship Proof"
+],
+"optional": [
+"SC Community Recommendation"
+]
+}
+},
+{
+"service_id": "income_certificate",
+"service_name": "Income Certificate",
+"category": "Certificates",
+"keywords": [
+"income certificate",
+"proof of income",
+"salary proof"
+],
+"fees": {
+"application_fee": 100
+},
+"required_documents": {
+"conditional": [
+{
+"condition": "Salary Income",
+"document": "Salary Slip"
+},
+{
+"condition": "Agriculture Income",
+"document": "Land Ownership Proof (Parcha)"
+}
+],
+"optional": [
+"Citizen Proof",
+"Affidavit",
+"Recommendation Letter"
+]
+}
+},
+{
+"service_id": "employment_card",
+"service_name": "Employment Card Certificate",
+"category": "Employment",
+"keywords": [
+"employment card",
+"job card",
+"unemployment card",
+"work registration"
+],
+"fees": {
+"application_fee": 100,
+"renewal_fee": 50
+},
+"required_documents": {
+"mandatory": [
+"Citizenship Certificate",
+"Voter ID",
+"Unmarried Certificate",
+"Recommendation Letter",
+"Attested Citizenship Proof"
+]
+}
+},
+{
+"service_id": "firm_registration",
+"service_name": "Firm Registration Certificate",
+"category": "Business",
+"keywords": [
+"firm registration",
+"business registration",
+"company registration",
+"shop registration"
+],
+"fees": {
+"application_fee": 100,
+"registration_fee_coi_holder": 2500,
+"registration_fee_non_coi_holder": 3500
+}
+},
+{
+"service_id": "primitive_tribe_certificate",
+"service_name": "Primitive Tribe Certificate",
+"category": "Certificates",
+"keywords": [
+"primitive tribe",
+"ptg certificate",
+"lepcha certificate"
+],
+"fees": {
+"application_fee": 100
+}
+},
+{
+"service_id": "sanitation_certificate",
+"service_name": "Sanitation Certificate",
+"category": "Rural Development",
+"keywords": [
+"sanitation certificate",
+"bdo certificate",
+"rural development"
+],
+"required_documents": {
+"mandatory": [
+"Gram Panchayat Verified Report"
+]
+},
+"application_steps": [
+"Create SSO Account.",
+"Login to SSO.",
+"Fill application form.",
+"Upload required documents.",
+"Submit application.",
+"Wait for BDO approval.",
+"Collect certificate from BDO office."
+]
+},
+{
+"service_id": "teacher_eligibility_test",
+"service_name": "Teacher Eligibility Test",
+"category": "Education",
+"keywords": [
+"tet",
+"teacher eligibility test",
+"teacher exam"
+]
+}
+]
 }
