@@ -118,7 +118,7 @@ function sendMessage(){
     })
 
     showTypingIndicator();
-    botReply();
+    botReply(message);
 }
 
 // Listener for send button
@@ -135,45 +135,50 @@ userInput.addEventListener('keydown',function(event){
 })
 
 // THE API PART
+async function botReply(userText) {
 
-async function botReply(userText){
-    
     const url = "http://localhost:3000/chat";
-    try{
-    
-        const response = await fetch(url,{
-            method:'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            // Turning text into for,at the server can read
-            body:JSON.stringify({history:chatHistory})
-        });
 
-        // security check : If the server actually responded
-        if(!response.ok){
-            throw new Error('Server Disconnected');
-        }
+    try {
 
-        //Unwrap the server's response
+        const response = await fetch("http://localhost:3000/chat", {
+    method: "POST",
+    credentials: "include",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        message: userText
+    })
+});
+
+       if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.error || "Server Error");
+}
+
         const data = await response.json();
 
         removeTypingIndicator();
 
-        // Injecting AI's response into the chat
-        appendMessage(data.reply,'bot-message');                
+        appendMessage(data.reply, "bot-message");
 
-        chatHistory.push({// gemini api does not understand bot or message, the syntax must be strictly "model" and "text"
-            role:"model", 
-            parts:[{text:data.reply}]
-        })
-    }
-    catch(error){
-        console.error('Connection error',error)
+        // Frontend history (optional, for UI only)
+        chatHistory.push({
+            role: "model",
+            parts: [{ text: data.reply }]
+        });
+
+    } catch (error) {
+
+        console.error("Connection error:", error);
 
         removeTypingIndicator();
 
-        appendMessage('Model is not connected. Please Wait. The backend needs to be connected. Writing more lines to see how it looks on the screen','bot-message');
+        appendMessage(
+            "Model is not connected. Please wait. The backend needs to be connected.",
+            "bot-message"
+        );
     }
 }
 
@@ -276,6 +281,6 @@ document.addEventListener('click', function(event) {
         });
 
         showTypingIndicator();
-        botReply();
+        botReply(routingContext);
     }
 });
