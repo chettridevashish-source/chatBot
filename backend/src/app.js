@@ -1,30 +1,15 @@
 import express from "express";
-import chatRouter from "./routes/chat.routes.js";
 import cors from "cors";
-import session from "express-session";
+import chatRoutes from "./routes/chat.routes.js";
 
 const app = express();
 
-app.use(
-  cors({
-    origin: "http://127.0.0.1:5501",
-    credentials: true
-  })
-);
+// Middleware
+app.use(cors());
+app.use(express.json()); // Parses incoming JSON requests
 
-app.use(express.json());
-
-app.use(
-  session({
-    secret: "sso-chatbot-secret",
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-      maxAge: 24 * 60 * 60 * 1000
-    }
-  })
-);
-
-app.use("/chat", chatRouter);
+// Mount Routes
+// Frontend will call: POST http://localhost:5000/api/chat
+app.use("/api/chat", chatRoutes);
 
 export default app;

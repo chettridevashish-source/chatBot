@@ -1,0 +1,49 @@
+# FastAPI server
+fastapi
+uvicorn[standard]
+
+# LangChain
+langchain
+langchain-core
+langchain-community
+langchain-text-splitters
+
+# Vector Database
+chromadb
+
+# Embeddings
+sentence-transformers
+
+# Ollama
+langchain-ollama
+
+# Document loaders
+pypdf
+
+# RAG utilities
+rank-bm25
+
+# Web scraping
+requests
+beautifulsoup4
+
+# Scheduler
+apscheduler
+
+# Environment variables
+python-dotenv
+
+# Data validation
+pydantic
+
+# Translation (optional)
+deep-translator
+
+# Whisper (if transcription is part of this Python service)
+openai-whisper
+
+# Data handling
+pandas
+
+# Token counting (optional)
+tiktoken
