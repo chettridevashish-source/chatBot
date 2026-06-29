@@ -17,3 +17,16 @@ class SSORetriever:
                 "fetch_k": FETCH_K 
             }
         )
+    
+# Inside your retriever logic
+def invoke(self, question):
+    # Perform the search
+    docs = self.vectorstore.similarity_search(question, k=3)
+    
+    # DEBUG: Print what the database actually found
+    print(f"\n[DEBUG] Search Query: {question}")
+    print(f"[DEBUG] Found {len(docs)} documents.")
+    for i, doc in enumerate(docs):
+        print(f"[DEBUG] Doc {i} content: {doc.page_content[:100]}...") 
+        
+    return docs

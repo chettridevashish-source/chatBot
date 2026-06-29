@@ -49,7 +49,7 @@ class DocumentLoader:
 
 if __name__ == "__main__":
 
-    loader = DocumentLoader("../data/raw")
+    loader = DocumentLoader("../data/downloads")
 
     documents = loader.load_documents()
 
