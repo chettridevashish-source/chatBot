@@ -1,32 +1,28 @@
-import fs from "fs";
-import path from "path";
-import { GoogleGenAI } from "@google/genai";
-import config from "../configs/config.js";
-import { systemPrompt } from "../prompts/systemPrompt.js";
+import axios from "axios";
 
-const ai = new GoogleGenAI({ apikey: config.GEMINI_API_KEY });
+export const processUserQuery = async (message, session) => {
+    try {
+        // Your Python FastAPI server must be running on port 8000
+        const pythonServiceUrl = 'http://127.0.0.1:8000/chat';
 
-// Resolve path to your sso_data.json file
-const dataPath = path.resolve("src/data/sso_data.json");
-const ssoData = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
+        // Python expects { "question": "..." } based on our FastAPI schemas
+        const payload = {
+            question: message
+        };
 
-export const processUserQuery = async (userMessage) => {
-  try {
-    const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
-      contents: userMessage,
-      config: {
-        //INSTRUCTION TO THE GEMINI LLM
-        systemInstruction: `
-          ${systemPrompt}
-          ${JSON.stringify(ssoData, null, 2)}
-        `,
-      },
-    });
+        const response = await axios.post(pythonServiceUrl, payload);
 
-    return response.text;
-  } catch (error) {
-    console.error("Error in Chat Service:", error);
-    throw new Error("Failed to process your request with the AI engine.");
-  }
+        // Python returns { "answer": "..." }, we extract 'answer' and return it as 'aiReply'
+        return response.data.answer;
+        
+    } catch (error) {
+        console.error("❌ Error communicating with Python RAG service:", error.message);
+        
+        // Check if Python server is down
+        if (error.code === 'ECONNREFUSED') {
+            throw new Error("AI engine is currently offline. Please ensure Python backend is running.");
+        }
+
+        throw new Error("Failed to process chat query.");
+    }
 };

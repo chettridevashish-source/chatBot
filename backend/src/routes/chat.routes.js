@@ -1,8 +1,9 @@
-import { Router } from "express";
-import { handleChatQuery } from "../controllers/chat.controller.js"
+import express from "express";
+import { handleChatQuery } from "../controllers/chat.controller.js";
 
-const router = Router();
+const router = express.Router();
 
-router.post("/",handleChatQuery);
+// Define the chat route
+router.post("/", handleChatQuery);
 
 export default router;

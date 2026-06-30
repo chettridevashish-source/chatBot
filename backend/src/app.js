@@ -1,12 +1,15 @@
 import express from "express";
-import chatRouter from "./routes/chat.routes.js"
-import cors from "cors"
+import cors from "cors";
+import chatRoutes from "./routes/chat.routes.js";
 
 const app = express();
 
+// Middleware
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); // Parses incoming JSON requests
 
-app.use("/chat",chatRouter);
+// Mount Routes
+// Frontend will call: POST http://localhost:5000/api/chat
+app.use("/api/chat", chatRoutes);
 
 export default app;

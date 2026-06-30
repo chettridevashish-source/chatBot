@@ -141,3 +141,20 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+
+# --- Python / RAG specific ---
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# --- Project Data & Databases ---
+# Ignore the PDF downloads and the vector database
+data/downloads/
+vectorstore/
+
+# Ignore local environment/config files
+.env
+.DS_Store
