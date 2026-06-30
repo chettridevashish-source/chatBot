@@ -215,41 +215,6 @@ function removeTypingIndicator() {
         typingRow.remove(); // Destroys the element completely
     }
 }
-// -----------------------------------
-
-
-
-
-// event manager
-// --- Life Event Manager Router ---
-// document.addEventListener('click', function(event) {
-//     // Check if the clicked element is one of our event buttons
-//     if (event.target.classList.contains('event-btn')) {
-//         const eventType = event.target.getAttribute('data-event');
-        
-//         // Hide the welcome selection area cleanly
-//         const welcomeBox = document.getElementById('welcome-container');
-//         if (welcomeBox) welcomeBox.style.display = 'none';
-
-//         // Route the explicit intents securely
-//         if (eventType === 'shop') {
-//             appendMessage("🏬 I want to open a shop / business in Sikkim.", "user-message");
-//             showTypingIndicator();
-//             // Send the hard-coded context instruction straight to the backend
-//             botReply("CONTEXT_ROUTE: USER_WANTS_TO_OPEN_BUSINESS_TRADE_LICENSE");
-//         } 
-//         else if (eventType === 'student') {
-//             appendMessage("🎓 I need to apply for student certificates.", "user-message");
-//             showTypingIndicator();
-//             botReply("CONTEXT_ROUTE: USER_IS_A_STUDENT_NEEDING_ST_OR_COI");
-//         } 
-//         else if (eventType === 'land') {
-//             appendMessage("🏔️ I need land or lineage document verification.", "user-message");
-//             showTypingIndicator();
-//             botReply("CONTEXT_ROUTE: USER_NEEDS_LAND_LINEAGE_PROOF");
-//         }
-//     }
-// });
 
 document.addEventListener('click', function(event) {
     if (event.target.classList.contains('event-btn')) {
