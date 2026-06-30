@@ -4,7 +4,7 @@ import json
 import hashlib
 from pathlib import Path
 
-# 1. Force Python to recognize the root 'rag' directory
+# 1. Force Python to recognize the root 'rag' directory FIRST
 BASE_DIR = Path(__file__).resolve().parents[1]
 if str(BASE_DIR) not in sys.path:
     sys.path.insert(0, str(BASE_DIR))
@@ -44,7 +44,6 @@ def run_ingestion_pipeline(folder_path="data/downloads/"):
     loader = DocumentLoader(folder_path)
     splitter = DocumentSplitter()
     
-    # Load our history of what has already been ingested
     state = load_state()
     new_ingestions = 0
     
