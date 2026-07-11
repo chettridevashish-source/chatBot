@@ -1,47 +1,37 @@
-// Elements
-const userInput = document.getElementById('user-input')
-const send = document.getElementById('sendbutton')
-const body = document.getElementById('chat-body')
+const userInput = document.getElementById('user-input');
+const send = document.getElementById('sendbutton');
+const body = document.getElementById('chat-body');
 const button = document.getElementById('chat-widget');
 const cross = document.getElementById('cross');
 const container = document.getElementById('chat-container');
 const max = document.getElementById('max');
 
-let chatHistory = []
 let isMax = false;
 
-// Open chat on widget click
-button.addEventListener('click',function(){
+button.addEventListener('click', () => {
     container.classList.remove('opacity');
     button.classList.add('opacity');
-})
+});
 
-// Maximize / restore
-max.addEventListener('click',function(){
-    if(isMax){
+max.addEventListener('click', () => {
+    if(isMax) {
         max.innerHTML = '<i class="fa-solid fa-expand"></i>';
         isMax = false;
-    }
-    else{
+    } else {
         max.innerHTML = '<i class="fa-solid fa-compress"></i>';
         isMax = true;
     }
     container.classList.toggle("maximize");
-})
+});
 
-// Close chat
-cross.addEventListener('click',function(){
+cross.addEventListener('click', () => {
     container.classList.add('opacity');
     button.classList.remove('opacity');
-})
+});
 
-// Render a message bubble (with a robot avatar for bot replies)
-function appendMessage(text, senderType){
+function appendMessage(text, senderType) {
     const row = document.createElement('div');
     row.classList.add('message-row');
-
-    const avatar = document.createElement('div');
-    avatar.classList.add('avatar');
 
     const bubble = document.createElement('div');
     bubble.classList.add('message');
@@ -54,81 +44,67 @@ function appendMessage(text, senderType){
     } else {
         row.classList.add('bot-row');
         bubble.classList.add('bot-message');
-        avatar.classList.add('bot-avatar');
+        const avatar = document.createElement('div');
+        avatar.classList.add('avatar', 'bot-avatar');
         avatar.innerHTML = '<i class="fa-solid fa-robot"></i>';
         row.appendChild(avatar);
         row.appendChild(bubble);
     }
 
     body.appendChild(row);
-    body.scrollTop = body.scrollHeight;
+    body.scrollTop = body.scrollHeight; 
 }
 
-function sendMessage(){
+function sendMessage() {
     const message = userInput.value.trim();
+    if (!message) return;
+
     userInput.value = '';
+    userInput.disabled = true;
+    send.disabled = true;
 
-    if(!message) return
-
-    appendMessage(message,'user-message');
-
-    chatHistory.push({
-        role : "user",
-        parts : [{text:message}]
-    })
-
+    appendMessage(message, 'user-message');
     showTypingIndicator();
-    botReply();
+    botReply(message);
 }
 
-send.addEventListener('click',function(){
-    sendMessage();
-});
+send.addEventListener('click', sendMessage);
 
-userInput.addEventListener('keydown',function(event){
-    if(event.key == 'Enter' && !event.shiftKey){
+userInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
         event.preventDefault();
         sendMessage();
     }
-})
+});
 
-// API call
-async function botReply(userText){
-
-    const url = "http://localhost:3000/chat";
-    try{
-
-        const response = await fetch(url,{
-            method:'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body:JSON.stringify({history:chatHistory})
+async function botReply(messageText) {
+    const url = "http://localhost:3000/api/chat";
+    
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: messageText })
         });
 
-        if(!response.ok){
-            throw new Error('Server Disconnected');
-        }
+        if (!response.ok) throw new Error('Server Disconnected');
 
         const data = await response.json();
-
+        
         removeTypingIndicator();
-        appendMessage(data.reply,'bot-message');
+        appendMessage(data.reply, 'bot-message');
 
-        chatHistory.push({ // Gemini API expects "model", not "bot"
-            role:"model",
-            parts:[{text:data.reply}]
-        })
-    }
-    catch(error){
-        console.error('Connection error',error)
-
+    } catch (error) {
+        console.error('Connection error', error);
         removeTypingIndicator();
-        appendMessage('Model is not connected. Please Wait. The backend needs to be connected. Writing more lines to see how it looks on the screen','bot-message');
+        appendMessage('Connection lost. Please check if the backend is running.', 'bot-message');
+    } finally {
+        userInput.disabled = false;
+        send.disabled = false;
+        userInput.focus();
     }
 }
 
-// Typing indicator
 function showTypingIndicator() {
     const row = document.createElement('div');
     row.classList.add('message-row', 'bot-row');
@@ -150,43 +126,31 @@ function showTypingIndicator() {
     row.appendChild(avatar);
     row.appendChild(bubble);
     body.appendChild(row);
-
     body.scrollTop = body.scrollHeight;
 }
 
 function removeTypingIndicator() {
     const typingRow = document.getElementById('typing-row');
-    if (typingRow) {
-        typingRow.remove();
-    }
+    if (typingRow) typingRow.remove();
 }
 
-// Welcome menu routing
-document.addEventListener('click', function(event) {
+document.addEventListener('click', (event) => {
     if (event.target.classList.contains('event-btn')) {
         const eventType = event.target.getAttribute('data-event');
         const welcomeBox = document.getElementById('welcome-container');
         if (welcomeBox) welcomeBox.style.display = 'none';
 
         let routingContext = "";
+        if (eventType === 'shop') routingContext = "I want to open a shop / business in Sikkim.";
+        else if (eventType === 'student') routingContext = "I need to apply for student certificates.";
+        else if (eventType === 'land') routingContext = "I need land or lineage document verification.";
 
-        if (eventType === 'shop') {
-            appendMessage("🏬 I want to open a shop / business in Sikkim.", "user-message");
-            routingContext = "CONTEXT_ROUTE: USER_WANTS_TO_OPEN_BUSINESS_TRADE_LICENSE";
-        } else if (eventType === 'student') {
-            appendMessage("🎓 I need to apply for student certificates.", "user-message");
-            routingContext = "CONTEXT_ROUTE: USER_IS_A_STUDENT_NEEDING_ST_OR_COI";
-        } else if (eventType === 'land') {
-            appendMessage("🏔️ I need land or lineage document verification.", "user-message");
-            routingContext = "CONTEXT_ROUTE: USER_NEEDS_LAND_LINEAGE_PROOF";
+        if(routingContext) {
+            userInput.disabled = true;
+            send.disabled = true;
+            appendMessage(routingContext, "user-message");
+            showTypingIndicator();
+            botReply(routingContext);
         }
-
-        chatHistory.push({
-            role: "user",
-            parts: [{ text: routingContext }]
-        });
-
-        showTypingIndicator();
-        botReply();
     }
 });

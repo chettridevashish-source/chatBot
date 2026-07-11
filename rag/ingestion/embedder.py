@@ -8,7 +8,7 @@ class Embedder:
 
     def __init__(
         self,
-        model="nomic-embed-text",
+        model="nomic-embed-text:latest",
     ):
 
         self.embeddings = OllamaEmbeddings(
