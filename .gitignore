@@ -158,3 +158,13 @@ vectorstore/
 # Ignore local environment/config files
 .env
 .DS_Store
+
+.venv/
+__pycache__/
+.env
+
+data/chroma/
+data/pdfs/
+data/logs/
+
+*.pyc

@@ -69,14 +69,14 @@ def run_ingestion_pipeline(folder_path="data/downloads/"):
             # Record the new fingerprint in our ledger
             state[filename] = current_hash
             new_ingestions += 1
-            print(f"✅ Ingested into VectorDB: {filename}")
+            print(f"Ingested into VectorDB: {filename}")
             
     # Save our updated ledger
     if new_ingestions > 0:
         save_state(state)
-        print(f"🎉 Smart Ingestion Complete! Processed {new_ingestions} new/updated documents.")
+        print(f"Smart Ingestion Complete! Processed {new_ingestions} new/updated documents.")
     else:
-        print("👍 No new changes detected. Database is perfectly synced.")
+        print(" No new changes detected. Database is perfectly synced.")
 
 if __name__ == "__main__":
     run_ingestion_pipeline()
