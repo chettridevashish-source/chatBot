@@ -153,6 +153,7 @@ __pycache__/
 # --- Project Data & Databases ---
 # Ignore the PDF downloads and the vector database
 data/downloads/
+rag/data/downloads/
 vectorstore/
 
 # Keep vector-store source code; ignore only its generated Chroma database.
