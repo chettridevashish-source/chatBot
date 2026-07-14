@@ -25,7 +25,7 @@ const ChatHead = styled.div`
   padding: 0 14px;
 
   h1 {
-    font-size: 17px;
+    font-size: 20px;
     color: white;
     font-weight: 600;
     margin: 0;
@@ -33,14 +33,14 @@ const ChatHead = styled.div`
 `;
 
 const CloseButton = styled.button`
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   color: white;
-  font-size: 16px;
+  font-size: 20px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -194,8 +194,8 @@ const Text = styled.div`
 const Input = styled.input`
   flex: 1;
   height: 36px;
-  padding: 0 14px;
-  font-size: 14px;
+  padding: 0 16px;
+  font-size: 16px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 20px;
   background-color: rgba(255, 255, 255, 0.1);
@@ -219,14 +219,14 @@ const Input = styled.input`
 `;
 
 const SendButton = styled.button`
-  width: 34px;
-  height: 34px;
+  width: 40px;
+  height: 40px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
   color: white;
-  font-size: 15px;
+  font-size: 18px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -236,7 +236,7 @@ const SendButton = styled.button`
     transform 0.15s ease;
 
   &:hover:not(:disabled) {
-    background-color: rgb(24, 50, 163);
+    background-color: rgb(47, 79, 184);
     transform: scale(1.08);
   }
 

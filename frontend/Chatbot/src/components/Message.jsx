@@ -11,7 +11,7 @@ const Bubble = styled.div`
   padding: 10px 14px;
   border-radius: 14px;
   color: rgba(255, 255, 255, 0.95);
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.4;
   word-wrap: break-word;
   white-space: pre-wrap;
