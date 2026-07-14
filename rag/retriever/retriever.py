@@ -18,9 +18,9 @@ class SSORetriever:
             return [f for f in os.listdir(self.downloads_dir) if f.endswith(".pdf")]
         return []
 
-    def get_retriever(self, query_text: str = "", **kwargs):
+    def get_retriever(self, query_text: str, **kwargs):
         if 'search_type' not in kwargs:
-            kwargs['search_type'] = "mmr"
+            kwargs['search_type'] = "similarity"
 
         search_kwargs = kwargs.get('search_kwargs', {})
         
@@ -48,13 +48,12 @@ class SSORetriever:
             if has_unique_match or has_st_match:
                 # Lock the vector search to ONLY this specific PDF
                 search_kwargs['filter'] = {"file_name": pdf_name}
-                print(f"🎯 Dynamic Router successfully locked onto: {pdf_name}")
                 break 
 
-        # MMR Configuration baseline
+        # Configuration baseline
         if 'k' not in search_kwargs:
             search_kwargs['k'] = 3
-        if 'fetch_k' not in search_kwargs:
+        if kwargs['search_type'] == "mmr" and 'fetch_k' not in search_kwargs:
             search_kwargs['fetch_k'] = 15
             
         kwargs['search_kwargs'] = search_kwargs

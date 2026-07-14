@@ -1,9 +1,30 @@
 {
-    "USER MANUAL TO ACQUIRE OTHER BACKWARD CLASSES CERTIFICATE.pdf": "bc08909cf7989a615300f0ef02ee177b",
-    "User Manual for ST Certificate.pdf": "9a6bb22f64462185b82609406041750e",
-    "APPLICANT-MANUAL FOR EMPLOYMENT CARD.pdf": "89741e6419febb83f57735129f9bae67",
-    "USER- MANUAL FOR ISSUE OF INCOME CERTIFICATE-.pdf": "818ea421396b41c5fda2a3c069eac9c3",
-    "User Manual for Primitive Tribe Certificate.pdf": "02d5d467f782bc3d68d4b791a68b553e",
-    "User Manual for Firm Registration  Certificate.pdf": "960ba86cb95b00f864c8242820151bcb",
-    "User Manual for SC Certificate.pdf": "a073d4544b2b79f02a5eff6bc2bca6f9"
+    "APPLICANT-MANUAL FOR EMPLOYMENT CARD.pdf": {
+        "hash": "f542d885717d703e90ce455979a07f44a38e30f3e8aaa6430922b01f5a180d6f",
+        "chunks": 19
+    },
+    "USER MANUAL TO ACQUIRE OTHER BACKWARD CLASSES CERTIFICATE.pdf": {
+        "hash": "fd547c5bbd271a74b66ceb49a694295ec5edcf64eaa6c5df2e64b503634d0cb8",
+        "chunks": 17
+    },
+    "USER- MANUAL FOR ISSUE OF INCOME CERTIFICATE-.pdf": {
+        "hash": "0c4476ff5bc03e2fc87117fd74f925cfe00d7ef0e1b7b00aaabf4abe136c7f30",
+        "chunks": 18
+    },
+    "User Manual for Firm Registration  Certificate.pdf": {
+        "hash": "f6c690d7b8250e79569d68e7aeca1a4018c6090503c91e527182c871bb872d1a",
+        "chunks": 25
+    },
+    "User Manual for Primitive Tribe Certificate.pdf": {
+        "hash": "8128f309ddbfa537a642da3bb07a3f108046757a24d70c7a80bc37da039f3f6c",
+        "chunks": 17
+    },
+    "User Manual for SC Certificate.pdf": {
+        "hash": "32d19298a9dbf68835d72e58e75d8b2c4ea9845d7f98ebc8b7c4d43b73d359b5",
+        "chunks": 18
+    },
+    "User Manual for ST Certificate.pdf": {
+        "hash": "08080c87c48708a9e7c72f239cf2f1714f4105d82491d5c70ff5059226226aa7",
+        "chunks": 18
+    }
 }

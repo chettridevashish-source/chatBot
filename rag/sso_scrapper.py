@@ -1,26 +1,28 @@
-import os
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
+from config import DOWNLOADS_DIR
+
 TARGET_URL = "https://sso.sikkim.gov.in/help"
-DOWNLOAD_DIR = "data/downloads"
+REQUEST_TIMEOUT_SECONDS = 30
 
 def scrape_pdfs():
-    if not os.path.exists(DOWNLOAD_DIR):
-        os.makedirs(DOWNLOAD_DIR)
-    
+    DOWNLOADS_DIR.mkdir(parents=True, exist_ok=True)
     headers = {'User-Agent': 'Mozilla/5.0'}
-    response = requests.get(TARGET_URL, headers=headers)
+    response = requests.get(TARGET_URL, headers=headers, timeout=REQUEST_TIMEOUT_SECONDS)
+    response.raise_for_status()
     soup = BeautifulSoup(response.text, 'html.parser')
 
     for link in soup.find_all('a', href=True):
-        if link['href'].endswith('.pdf'):
+        if link['href'].lower().endswith('.pdf'):
             pdf_url = urljoin(TARGET_URL, link['href'])
-            filename = os.path.join(DOWNLOAD_DIR, link['href'].split('/')[-1])
+            filename = DOWNLOADS_DIR / link['href'].split('/')[-1]
             
-            if not os.path.exists(filename):
+            if not filename.exists():
                 print(f"Downloading: {filename}")
-                content = requests.get(pdf_url, headers=headers).content
-                with open(filename, 'wb') as f:
-                    f.write(content)
+                pdf_response = requests.get(pdf_url, headers=headers, timeout=REQUEST_TIMEOUT_SECONDS)
+                pdf_response.raise_for_status()
+                temporary_file = filename.with_suffix(".pdf.part")
+                temporary_file.write_bytes(pdf_response.content)
+                temporary_file.replace(filename)
