@@ -4,6 +4,8 @@ import ChatBody from "./ChatBody";
 import ChatText from "./ChatText";
 import { useState } from "react";
 
+const chatApiUrl = import.meta.env.VITE_CHAT_API_URL || "/api/chat";
+
 const ChatContainer = ({ toggle }) => {
   const [messages, setMessages] = useState([
     { id: 1, sender: "bot", text: "Hello, How may I help you." },
@@ -19,14 +21,15 @@ const ChatContainer = ({ toggle }) => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/chat", {
+      const response = await fetch(chatApiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: userMessage }),
       });
 
       if (!response.ok) {
-        throw new Error(`Server error: ${response.status}`);
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `Server error: ${response.status}`);
       }
 
       const data = await response.json();
@@ -40,7 +43,7 @@ const ChatContainer = ({ toggle }) => {
           "bot",
         );
       } else {
-        addMessage("Sorry, something went wrong. Please try again.", "bot");
+        addMessage(error.message || "Sorry, something went wrong. Please try again.", "bot");
       }
     } finally {
       setLoading(false);

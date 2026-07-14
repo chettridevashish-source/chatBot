@@ -35,12 +35,18 @@ The ingestion job downloads or reads PDF manuals, splits their pages into overla
    npm start
    ```
 
-3. Serve the frontend on port 5500 and open it in your browser:
+3. Start the React frontend and open the Vite URL shown in your browser:
 
    ```bash
-   cd frontend
-   python3 -m http.server 5500
+   cd frontend/Chatbot
+   npm install
+   npm run dev
    ```
+
+   Vite forwards `/api` requests to the Express API on port `3000`. To use a
+   different backend address, create `frontend/Chatbot/.env.local` with
+   `VITE_BACKEND_URL=http://localhost:3000`. For a deployed frontend, set
+   `VITE_CHAT_API_URL` to the full public `/api/chat` URL.
 
    If you use a different frontend origin, update `CLIENT_ORIGINS` to match it.
 
