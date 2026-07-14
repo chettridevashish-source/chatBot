@@ -10,6 +10,7 @@ langchain-text-splitters
 
 # Vector Database
 chromadb
+langchain-chroma
 
 # Embeddings
 sentence-transformers

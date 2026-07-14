@@ -2,9 +2,11 @@ import logging
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.concurrency import run_in_threadpool
 
 from api.schemas import ChatRequest, ChatResponse
 from chains.rag_chain import SSORagChain
+from config import CORS_ORIGINS
 
 # Configure basic logging for the API layer
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -44,10 +46,10 @@ app = FastAPI(
 # Configure CORS so your Node.js backend can communicate with it
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # SECURITY NOTE: In production, change "*" to your Node server's exact IP/Domain
-    allow_credentials=True,
+    allow_origins=CORS_ORIGINS,
+    allow_credentials=False,
     allow_methods=["POST"],
-    allow_headers=["*"],
+    allow_headers=["Content-Type"],
 )
 
 @app.post("/chat", response_model=ChatResponse)
@@ -58,12 +60,14 @@ async def chat_endpoint(request: ChatRequest):
     if not rag_chain:
         raise HTTPException(status_code=503, detail="AI Service is currently initializing or unavailable.")
 
-    logger.info(f"Incoming query: {request.question}")
+    logger.info("Incoming query (%d characters)", len(request.question))
     
     try:
         # Pass debug=False in production to keep terminal logs clean
-        answer = rag_chain.invoke(request.question, debug=False)
+        # Ollama and Chroma calls are synchronous. Offloading them keeps the
+        # async server responsive to health checks and other requests.
+        answer = await run_in_threadpool(rag_chain.invoke, request.question, False)
         return ChatResponse(answer=answer)
-    except Exception as e:
-        logger.error(f"Error during RAG generation: {e}")
+    except Exception:
+        logger.exception("Error during RAG generation")
         raise HTTPException(status_code=500, detail="An internal server error occurred while processing the query.")

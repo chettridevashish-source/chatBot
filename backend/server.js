@@ -1,50 +1,36 @@
-import express from "express";
-import cors from "cors";
-import axios from "axios";
-import { spawn } from "child_process";
-import path from "path";
-import { fileURLToPath } from "url";
+import { spawn } from "node:child_process";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-const app = express();
-const PORT = 3000;
+import app from "./src/app.js";
+import config from "./src/configs/config.js";
 
-// Setup paths to find the 'rag' directory from 'backend'
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const ragDirectory = path.resolve(__dirname, '../rag');
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const ragDirectory = path.resolve(__dirname, "../rag");
+let ragProcess;
 
-app.use(cors({ origin: "*" }));
-app.use(express.json());
+if (config.autoStartRag) {
+    console.log("Starting the local RAG service...");
+    ragProcess = spawn("uv", ["run", "python", "main.py"], {
+        cwd: ragDirectory,
+        stdio: "inherit",
+    });
 
-// --- AUTOMATIC PYTHON STARTUP ---
-console.log("Initializing Python RAG Engine...");
+    ragProcess.on("error", (error) => {
+        console.error(`Could not start the RAG service: ${error.message}`);
+        console.error("Start it manually with: cd rag && uv run python main.py");
+    });
+}
 
-const pythonProcess = spawn("uv", ["run", "main.py"], {
-    cwd: ragDirectory,
-    shell: true
+const server = app.listen(config.port, () => {
+    console.log(`Backend listening on http://localhost:${config.port}`);
+    console.log("Frontend endpoint: POST /api/chat");
 });
 
-pythonProcess.stdout.on("data", (data) => console.log(`[PYTHON]: ${data}`));
-pythonProcess.stderr.on("data", (data) => console.error(`[PYTHON ERROR]: ${data}`));
+function shutdown() {
+    server.close();
+    ragProcess?.kill("SIGTERM");
+}
 
-// Ensure Python dies when Node dies
-process.on("SIGINT", () => {
-    console.log("\nShutting down...");
-    pythonProcess.kill();
-    process.exit();
-});
-
-// --- API ROUTE ---
-app.post("/api/chat", async (req, res) => {
-    try {
-        const { message } = req.body;
-        const response = await axios.post("http://127.0.0.1:8000/chat", { question: message });
-        res.json({ reply: response.data.answer });
-    } catch (error) {
-        res.status(500).json({ error: "AI Engine not ready." });
-    }
-});
-
-app.listen(PORT, () => {
-    console.log(`✅ Backend and AI Engine started on http://localhost:${PORT}`);
-});
+process.once("SIGINT", shutdown);
+process.once("SIGTERM", shutdown);

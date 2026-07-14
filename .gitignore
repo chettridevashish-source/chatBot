@@ -153,8 +153,24 @@ __pycache__/
 # --- Project Data & Databases ---
 # Ignore the PDF downloads and the vector database
 data/downloads/
+rag/data/downloads/
 vectorstore/
+
+# Keep vector-store source code; ignore only its generated Chroma database.
+!rag/vectorstore/
+rag/vectorstore/chroma_db/
+!rag/vectorstore/vectorstore.py
 
 # Ignore local environment/config files
 .env
 .DS_Store
+
+.venv/
+__pycache__/
+.env
+
+data/chroma/
+data/pdfs/
+data/logs/
+
+*.pyc

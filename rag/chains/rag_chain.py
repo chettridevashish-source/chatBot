@@ -5,8 +5,8 @@ from config import LLM_MODEL
 
 class SSORagChain:
     def __init__(self):
-        self.retriever = SSORetriever().get_retriever(search_type="mmr")
-        self.llm = ChatOllama(model=LLM_MODEL, temperature=0.0)
+        self.retriever = SSORetriever()
+        self.llm = ChatOllama(model=LLM_MODEL, temperature=0.0, keep_alive=-1)
         self.prompt = sso_qa_prompt
 
     def _format_docs(self, docs: list) -> str:
@@ -16,7 +16,8 @@ class SSORagChain:
 
     def invoke(self, question: str, debug: bool = False) -> str:
         # 1. Retrieve
-        docs = self.retriever.invoke(question)
+        retriever = self.retriever.get_retriever(question, search_type="similarity")
+        docs = retriever.invoke(question)
         
         # 2. Format
         context = self._format_docs(docs)
