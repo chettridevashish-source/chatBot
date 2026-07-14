@@ -35,13 +35,18 @@ function appendMessage(text, senderType) {
 
     const bubble = document.createElement('div');
     bubble.classList.add('message');
-    bubble.textContent = text;
 
     if (senderType === 'user-message') {
+        bubble.textContent = text;
         row.classList.add('user-row');
         bubble.classList.add('user-message');
         row.appendChild(bubble);
     } else {
+        if (typeof marked !== 'undefined') {
+            bubble.innerHTML = marked.parse(text);
+        } else {
+            bubble.textContent = text;
+        }
         row.classList.add('bot-row');
         bubble.classList.add('bot-message');
         const avatar = document.createElement('div');
@@ -78,7 +83,9 @@ userInput.addEventListener('keydown', (event) => {
 });
 
 async function botReply(messageText) {
-    const url = "http://localhost:3000/api/chat";
+    // Keep the API on the same machine/IP used to open the frontend. This
+    // supports both localhost and 127.0.0.1 (and a LAN host during demos).
+    const url = `http://${window.location.hostname || 'localhost'}:3000/api/chat`;
     
     try {
         const response = await fetch(url, {

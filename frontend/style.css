@@ -193,7 +193,33 @@ body{
     color: var(--ink);
     border: 1px solid rgba(91, 0, 232, 0.08);
     border-radius: 16px 16px 16px 4px;
-    white-space: pre-wrap;
+}
+
+.bot-message p {
+    margin: 0 0 10px 0;
+}
+
+.bot-message p:last-child {
+    margin-bottom: 0;
+}
+
+.bot-message ul, .bot-message ol {
+    margin: 8px 0;
+    padding-left: 20px;
+}
+
+.bot-message li {
+    margin-bottom: 6px;
+    line-height: 1.45;
+}
+
+.bot-message li:last-child {
+    margin-bottom: 0;
+}
+
+.bot-message strong, .bot-message b {
+    color: var(--purple-dark);
+    font-weight: 600;
 }
 
 /* Avatars */

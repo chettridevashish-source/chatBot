@@ -155,6 +155,11 @@ __pycache__/
 data/downloads/
 vectorstore/
 
+# Keep vector-store source code; ignore only its generated Chroma database.
+!rag/vectorstore/
+rag/vectorstore/chroma_db/
+!rag/vectorstore/vectorstore.py
+
 # Ignore local environment/config files
 .env
 .DS_Store
