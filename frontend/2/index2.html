@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Bot</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+    <label for="chat-toggle" id="chat-widget" aria-label="Open chat assistant">
+        <i class="fa-solid fa-robot"></i>
+    </label>
+
+    <div id="chat-container" class="opacity">
+
+        <div id="chat-header">
+            <span id="header-avatar"><i class="fa-solid fa-robot"></i></span>
+            <div id="header-text">
+                <h2>AI Assistant</h2>
+                <p id="header-subtitle"><span class="status-dot"></span>Online</p>
+            </div>
+        </div>
+        <button id="max" aria-label="Maximize chat">
+            <i class="fa-solid fa-expand"></i>
+        </button>
+        <button id="cross" aria-label="Close chat">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div id="chat-body">
+
+            <div id="welcome-container">
+                <p class="welcome-text">👋 Welcome to Sikkim SSO.<br>What life event can I help you navigate today?</p>
+                <div class="event-manager-box">
+                    <button class="event-btn" data-event="shop">🏬 Want to open a shop / business</button>
+                    <button class="event-btn" data-event="student">🎓 Need student certificates (ST/COI)</button>
+                    <button class="event-btn" data-event="land">🏔️ Land / Lineage verification</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="chat-text">
+            <input type="text" placeholder="Enter your message..." id="user-input">
+            <button id="sendbutton" aria-label="Send message">
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+        </div>
+
+    </div>
+
+<script src="jav.js"></script>
+</body>
+</html>
