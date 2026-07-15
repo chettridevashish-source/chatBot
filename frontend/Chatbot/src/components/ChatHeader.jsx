@@ -25,7 +25,7 @@ const ChatHead = styled.div`
   padding: 0 14px;
 
   h1 {
-    font-size: 20px;
+    font-size: 25px;
     color: white;
     font-weight: 600;
     margin: 0;

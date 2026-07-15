@@ -1,7 +1,14 @@
 import styled, { keyframes } from "styled-components";
+import { useEffect, useRef } from "react";
 import Message from "./Message";
 
 const ChatBody = ({ messages, loading }) => {
+  const bottomRef = useRef(null);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, loading]);
+
   return (
     <BodyContainer>
       {messages.map((msg) => (
@@ -9,12 +16,17 @@ const ChatBody = ({ messages, loading }) => {
       ))}
 
       {loading && (
-        <TypingBubble>
-          <Dot delay="0s" />
-          <Dot delay="0.2s" />
-          <Dot delay="0.4s" />
-        </TypingBubble>
+        <TypingWrapper>
+          <TypingBubble>
+            <Dot delay="0s" />
+            <Dot delay="0.2s" />
+            <Dot delay="0.4s" />
+          </TypingBubble>
+          <TypingLabel>Typing...</TypingLabel>
+        </TypingWrapper>
       )}
+
+      <div ref={bottomRef} />
     </BodyContainer>
   );
 };
@@ -30,6 +42,28 @@ const BodyContainer = styled.div`
   padding: 15px;
   overflow-y: auto;
   flex: 8;
+
+  /* Custom scrollbar — Chrome/Edge/Safari */
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+
+  /* Custom scrollbar — Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
 `;
 
 const bounce = keyframes`
@@ -43,6 +77,13 @@ const bounce = keyframes`
   }
 `;
 
+const TypingWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+`;
+
 const TypingBubble = styled.div`
   align-self: flex-start;
   background-color: rgba(255, 255, 255, 0.12);
@@ -52,6 +93,12 @@ const TypingBubble = styled.div`
   border-radius: 14px;
   display: flex;
   gap: 5px;
+`;
+
+const TypingLabel = styled.span`
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-left: 4px;
 `;
 
 const Dot = styled.div`

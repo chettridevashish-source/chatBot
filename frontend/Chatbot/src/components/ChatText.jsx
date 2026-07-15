@@ -217,16 +217,15 @@ const Input = styled.input`
     opacity: 0.6;
   }
 `;
-
 const SendButton = styled.button`
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(240, 195, 120, 0.5);
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(240, 195, 120, 0.35);
   backdrop-filter: blur(10px);
   color: white;
-  font-size: 18px;
+  font-size: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -236,8 +235,8 @@ const SendButton = styled.button`
     transform 0.15s ease;
 
   &:hover:not(:disabled) {
-    background-color: rgb(47, 79, 184);
-    transform: scale(1.08);
+    background-color: rgba(240, 195, 120, 0.5);
+    transform: scale(1.2);
   }
 
   &:active:not(:disabled) {
@@ -246,6 +245,7 @@ const SendButton = styled.button`
 
   &:disabled {
     background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     cursor: not-allowed;
   }
 `;
