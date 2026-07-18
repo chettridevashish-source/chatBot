@@ -52,22 +52,24 @@ app.add_middleware(
     allow_headers=["Content-Type"],
 )
 
-@app.post("/chat", response_model=ChatResponse)
+from fastapi.responses import StreamingResponse
+
+@app.post("/chat")
 async def chat_endpoint(request: ChatRequest):
     """
-    Accepts a JSON payload with a question and returns the AI answer.
+    Accepts a JSON payload with a question and returns a streamed AI answer.
     """
     if not rag_chain:
         raise HTTPException(status_code=503, detail="AI Service is currently initializing or unavailable.")
 
     logger.info("Incoming query (%d characters)", len(request.question))
     
-    try:
-        # Pass debug=False in production to keep terminal logs clean
-        # Ollama and Chroma calls are synchronous. Offloading them keeps the
-        # async server responsive to health checks and other requests.
-        answer = await run_in_threadpool(rag_chain.invoke, request.question, False)
-        return ChatResponse(answer=answer)
-    except Exception:
-        logger.exception("Error during RAG generation")
-        raise HTTPException(status_code=500, detail="An internal server error occurred while processing the query.")
+    async def generate():
+        try:
+            async for chunk in rag_chain.astream_with_telemetry(request.question):
+                yield chunk
+        except Exception as e:
+            logger.exception("Error during RAG generation")
+            yield " [Error: An internal server error occurred while processing the query.]"
+
+    return StreamingResponse(generate(), media_type="text/plain")

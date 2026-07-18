@@ -4,6 +4,8 @@ import ChatBody from "./ChatBody";
 import ChatText from "./ChatText";
 import { useState } from "react";
 
+const chatApiUrl = import.meta.env.VITE_CHAT_API_URL || "/api/chat";
+
 const ChatContainer = ({ toggle }) => {
   const [messages, setMessages] = useState([
     { id: 1, sender: "bot", text: "Hello, How may I help you." },
@@ -17,9 +19,13 @@ const ChatContainer = ({ toggle }) => {
   const sendMessage = async (userMessage) => {
     addMessage(userMessage, "user");
     setLoading(true);
+    
+    // Add an empty bot message immediately
+    const botMsgId = Date.now() + 1;
+    setMessages((prev) => [...prev, { id: botMsgId, sender: "bot", text: "" }]);
 
     try {
-      const response = await fetch("http://localhost:3000/chat", {
+      const response = await fetch(chatApiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: userMessage }),
@@ -29,18 +35,40 @@ const ChatContainer = ({ toggle }) => {
         throw new Error(`Server error: ${response.status}`);
       }
 
-      const data = await response.json();
-      addMessage(data.reply, "bot");
+      // Stop loading animation immediately as we start receiving data
+      setLoading(false);
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder("utf-8");
+      
+      let done = false;
+      while (!done) {
+        const { value, done: readerDone } = await reader.read();
+        done = readerDone;
+        if (value) {
+          const chunk = decoder.decode(value, { stream: true });
+          setMessages((prev) => 
+            prev.map((msg) => 
+              msg.id === botMsgId ? { ...msg, text: msg.text + chunk } : msg
+            )
+          );
+        }
+      }
     } catch (error) {
       console.error("Failed to get bot reply:", error);
 
       if (error instanceof TypeError) {
-        addMessage(
-          "⚠️ Server is not connected yet. Please try again later.",
-          "bot",
+        setMessages((prev) => 
+          prev.map((msg) => 
+            msg.id === botMsgId ? { ...msg, text: "⚠️ Server is not connected yet. Please try again later." } : msg
+          )
         );
       } else {
-        addMessage("Sorry, something went wrong. Please try again.", "bot");
+        setMessages((prev) => 
+          prev.map((msg) => 
+            msg.id === botMsgId ? { ...msg, text: "Sorry, something went wrong. Please try again." } : msg
+          )
+        );
       }
     } finally {
       setLoading(false);

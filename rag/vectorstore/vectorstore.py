@@ -9,9 +9,12 @@ CHROMA_PATH = VECTORSTORE_DIR
 
 def get_vectorstore():
     # Configure Ollama embeddings
+    # keep_alive=0 forces the embedding model to unload immediately after use.
+    # This frees up the GPU VRAM so the much larger main LLM (qwen3) can load fully into VRAM,
+    # preventing extremely slow CPU fallback during generation.
     embeddings = OllamaEmbeddings(
         model=EMBEDDING_MODEL,
-        keep_alive=-1
+        keep_alive=0
     )
 
     vectorstore = Chroma(

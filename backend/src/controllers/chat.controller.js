@@ -1,4 +1,4 @@
-import { processUserQuery } from "../services/chat.service.js";
+import { processUserQueryStream } from "../services/chat.service.js";
 
 export const handleChatQuery = async (req, res) => {
     const { message } = req.body; // Frontend sends { "message": "..." }
@@ -13,16 +13,20 @@ export const handleChatQuery = async (req, res) => {
     }
 
     try {
-        const aiReply = await processUserQuery(
+        res.setHeader("Content-Type", "text/plain");
+        res.setHeader("Transfer-Encoding", "chunked");
+        
+        await processUserQueryStream(
             message.trim(),
+            res
         );
-
-        return res.status(200).json({
-            reply: aiReply // Sends back { "reply": "..." }
-        });
     } catch (error) {
-        return res.status(error.statusCode || 500).json({
-            error: error.message
-        });
+        if (!res.headersSent) {
+            return res.status(error.statusCode || 500).json({
+                error: error.message
+            });
+        } else {
+            res.end();
+        }
     }
 };

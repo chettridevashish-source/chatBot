@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 from vectorstore.vectorstore import get_vectorstore
+from config import RETRIEVER_K
 
 class SSORetriever:
     def __init__(self):
@@ -52,7 +53,7 @@ class SSORetriever:
 
         # Configuration baseline
         if 'k' not in search_kwargs:
-            search_kwargs['k'] = 3
+            search_kwargs['k'] = RETRIEVER_K
         if kwargs['search_type'] == "mmr" and 'fetch_k' not in search_kwargs:
             search_kwargs['fetch_k'] = 15
             
