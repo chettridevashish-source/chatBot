@@ -4,13 +4,44 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.concurrency import run_in_threadpool
 
+import asyncio
 from api.schemas import ChatRequest, ChatResponse
 from chains.rag_chain import SSORagChain
-from config import CORS_ORIGINS
+from config import (
+    CORS_ORIGINS,
+    MAX_CONCURRENT_REQUESTS,
+    MAX_QUEUE_SIZE,
+    QUEUE_TIMEOUT
+)
 
 # Configure basic logging for the API layer
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
+
+class InferenceQueue:
+    def __init__(self, max_concurrent: int, max_queue_size: int):
+        self.semaphore = asyncio.Semaphore(max_concurrent)
+        self.max_queue_size = max_queue_size
+        self.current_waiters = 0
+
+    async def wait_and_acquire(self, timeout: float):
+        if self.current_waiters >= self.max_queue_size:
+            logger.warning("Queue full. Rejecting request.")
+            raise HTTPException(status_code=429, detail="Server is overloaded. Too many requests in queue.")
+        
+        self.current_waiters += 1
+        try:
+            await asyncio.wait_for(self.semaphore.acquire(), timeout=timeout)
+        except asyncio.TimeoutError:
+            logger.warning("Queue timeout. Rejecting request.")
+            raise HTTPException(status_code=504, detail="Request timed out waiting for an available worker.")
+        finally:
+            self.current_waiters -= 1
+            
+    def release(self):
+        self.semaphore.release()
+
+inference_queue = InferenceQueue(max_concurrent=MAX_CONCURRENT_REQUESTS, max_queue_size=MAX_QUEUE_SIZE)
 
 # Global variable to hold our AI model in memory
 rag_chain = None
@@ -64,6 +95,9 @@ async def chat_endpoint(request: ChatRequest):
 
     logger.info("Incoming query (%d characters)", len(request.question))
     
+    # 1. Wait in queue before accepting the streaming response
+    await inference_queue.wait_and_acquire(timeout=QUEUE_TIMEOUT)
+    
     async def generate():
         try:
             async for chunk in rag_chain.astream_with_telemetry(request.question):
@@ -71,5 +105,8 @@ async def chat_endpoint(request: ChatRequest):
         except Exception as e:
             logger.exception("Error during RAG generation")
             yield " [Error: An internal server error occurred while processing the query.]"
+        finally:
+            # 2. Release when stream ends or disconnects
+            inference_queue.release()
 
     return StreamingResponse(generate(), media_type="text/plain")

@@ -14,7 +14,7 @@ def get_vectorstore():
     # preventing extremely slow CPU fallback during generation.
     embeddings = OllamaEmbeddings(
         model=EMBEDDING_MODEL,
-        keep_alive=0
+        keep_alive=-1
     )
 
     vectorstore = Chroma(

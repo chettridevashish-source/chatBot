@@ -42,7 +42,7 @@ class SSORagChain:
         # 1. Retrieve (Instrumented)
         retrieval_start = time.perf_counter()
         retriever = self.retriever.get_retriever(question, search_type="similarity")
-        docs = retriever.invoke(question) # SSORetriever uses sync invoke internally
+        docs = await retriever.ainvoke(question)
         retrieval_time = time.perf_counter() - retrieval_start
         
         # 2. Format & Build Prompt (Instrumented)

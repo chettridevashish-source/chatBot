@@ -20,7 +20,7 @@ DOWNLOADS_DIR.mkdir(parents=True, exist_ok=True)
 
 # Model settings
 EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "nomic-embed-text")
-LLM_MODEL = os.getenv("LLM_MODEL", "qwen3:8b")
+LLM_MODEL = os.getenv("LLM_MODEL", "qwen3:4b")
 RAG_HOST = os.getenv("RAG_HOST", "127.0.0.1")
 RAG_PORT = int(os.getenv("RAG_PORT", "8000"))
 RAG_RELOAD = os.getenv("RAG_RELOAD", "false").lower() == "true"
@@ -38,3 +38,8 @@ CHUNK_OVERLAP = 50
 # Retrieval settings
 RETRIEVER_K = 3
 FETCH_K = 10
+
+# Concurrency & Queue settings
+MAX_CONCURRENT_REQUESTS = int(os.getenv("MAX_CONCURRENT_REQUESTS", "4"))
+MAX_QUEUE_SIZE = int(os.getenv("MAX_QUEUE_SIZE", "50"))
+QUEUE_TIMEOUT = float(os.getenv("QUEUE_TIMEOUT", "60.0"))
