@@ -14,7 +14,8 @@ class SSORagChain:
             model=LLM_MODEL, 
             temperature=0.0, 
             keep_alive=-1,
-            num_ctx=2048
+            num_ctx=2048,
+            model_kwargs={"think": False}
         )
         self.prompt = sso_qa_prompt
 
