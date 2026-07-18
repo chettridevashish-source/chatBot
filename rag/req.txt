@@ -12,39 +12,22 @@ langchain-text-splitters
 chromadb
 langchain-chroma
 
-# Embeddings
-sentence-transformers
-
 # Ollama
 langchain-ollama
 
 # Document loaders
 pypdf
-
-# RAG utilities
-rank-bm25
+rapidocr-onnxruntime
 
 # Web scraping
 requests
 beautifulsoup4
 
 # Scheduler
-apscheduler
+schedule
 
 # Environment variables
 python-dotenv
 
 # Data validation
 pydantic
-
-# Translation (optional)
-deep-translator
-
-# Whisper (if transcription is part of this Python service)
-openai-whisper
-
-# Data handling
-pandas
-
-# Token counting (optional)
-tiktoken

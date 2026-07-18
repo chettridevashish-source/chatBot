@@ -15,6 +15,9 @@ class SSORagChain:
             temperature=0.0, 
             keep_alive=-1,
             num_ctx=2048,
+            top_k=10,
+            top_p=0.5,
+            num_predict=150,
             model_kwargs={"think": False}
         )
         self.prompt = sso_qa_prompt
@@ -22,7 +25,16 @@ class SSORagChain:
     def _format_docs(self, docs: list) -> str:
         if not docs:
             return ""
-        return "\n\n".join(doc.page_content for doc in docs)
+        import re
+        seen = set()
+        unique_contents = []
+        for doc in docs:
+            # Compress whitespaces and newlines
+            clean_content = re.sub(r'\s+', ' ', doc.page_content).strip()
+            if clean_content and clean_content not in seen:
+                seen.add(clean_content)
+                unique_contents.append(clean_content)
+        return "\n\n".join(unique_contents)
 
     async def astream_with_telemetry(self, question: str):
         overall_start = time.perf_counter()

@@ -12,12 +12,14 @@ class SSORetriever:
         # Adjust the parent traversal depending on where retriever.py is located
         # Assuming it is in rag/retriever/retriever.py
         self.downloads_dir = current_script_dir.parent / "data" / "downloads"
+        
+        self._cached_pdfs = []
+        if self.downloads_dir.exists():
+            self._cached_pdfs = [f for f in os.listdir(self.downloads_dir) if f.endswith(".pdf")]
 
     def _get_all_downloaded_filenames(self) -> list[str]:
-        """Scans the downloads directory and returns a list of PDF filenames."""
-        if self.downloads_dir.exists():
-            return [f for f in os.listdir(self.downloads_dir) if f.endswith(".pdf")]
-        return []
+        """Returns the cached list of PDF filenames."""
+        return self._cached_pdfs
 
     def get_retriever(self, query_text: str, **kwargs):
         if 'search_type' not in kwargs:
